@@ -21,7 +21,11 @@ export default function Home() {
       {/* En-tête avec logos et titre */}
       <div className="w-full flex items-center justify-center gap-4 mb-8">
         {/* Premier logo (à gauche) */}
-        <div className="w-16 h-16 md:w-20 md:h-20 bg-[#4f772d] rounded-full flex items-center justify-center shadow-lg hover:bg-[#31572c] transition duration-300">
+        <motion.div
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          whileTap={{ scale: 0.9 }}
+          className="w-16 h-16 md:w-20 md:h-20 bg-[#4f772d] rounded-full flex items-center justify-center shadow-lg hover:bg-[#31572c] transition duration-300"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -34,15 +38,24 @@ export default function Home() {
           >
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
           </svg>
-        </div>
+        </motion.div>
 
         {/* Titre */}
-        <h1 className="text-6xl md:text-7xl font-bold text-[#90a955] font-scheherazade text-center tracking-wide hover:text-[#7a9948] transition duration-300">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-6xl md:text-7xl font-bold text-[#90a955] font-scheherazade text-center tracking-wide hover:text-[#7a9948] transition duration-300"
+        >
           المصلح الأعظم
-        </h1>
+        </motion.h1>
 
         {/* Deuxième logo (à droite) */}
-        <div className="w-16 h-16 md:w-20 md:h-20 bg-[#4f772d] rounded-full flex items-center justify-center shadow-lg hover:bg-[#31572c] transition duration-300">
+        <motion.div
+          whileHover={{ scale: 1.1, rotate: -5 }}
+          whileTap={{ scale: 0.9 }}
+          className="w-16 h-16 md:w-20 md:h-20 bg-[#4f772d] rounded-full flex items-center justify-center shadow-lg hover:bg-[#31572c] transition duration-300"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -55,7 +68,7 @@ export default function Home() {
           >
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
           </svg>
-        </div>
+        </motion.div>
       </div>
 
       {/* Contenu principal */}
@@ -70,26 +83,36 @@ export default function Home() {
             className="w-full flex flex-col items-center"
           >
             {/* Slogan (sous le titre) */}
-            <p className="text-3xl md:text-4xl text-[#d4af37] mb-8 font-scheherazade italic text-center leading-relaxed hover:text-[#c2a035] transition duration-300">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="text-3xl md:text-4xl text-[#d4af37] mb-8 font-scheherazade italic text-center leading-relaxed hover:text-[#c2a035] transition duration-300"
+            >
               على خُطاه أخطاء تُصحّح
-            </p>
+            </motion.p>
 
             {/* Description (paragraphe structuré) */}
-            <div className="max-w-3xl bg-white bg-opacity-10 backdrop-blur-md rounded-lg p-8 shadow-lg text-right hover:bg-opacity-20 transition duration-300">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+              className="max-w-3xl bg-white bg-opacity-10 backdrop-blur-md rounded-lg p-8 shadow-lg text-right hover:bg-opacity-20 transition duration-300"
+            >
               <p className="text-xl md:text-2xl text-white leading-loose font-scheherazade">
                 مرحبًا بكم في "المصلح الأعظم" — موقع تربوي إصلاحي موجه للمعلمين وأولياء الأمور، يهدف إلى تصحيح الأخطاء التصورية والسلوكية لدى المتعلمين استنادًا إلى الأساليب النبوية الحكيمة. فنبينا <span className="text-[#d4af37] font-bold">محمد ﷺ</span> هو "المصلح الأعظم"، معلم البشرية الأول، كفؤٌ لا يُجارى، عالج الأخطاء برفق وحزم، ووضع منهجًا خالدًا في التربية والتقويم يُنير درب كل مربي ومعلم.
                 <br />
                 <br />
                 لنرتقِ معًا بأبنائنا نحو الفهم الصحيح والسلوك القويم!
               </p>
-            </div>
+            </motion.div>
 
             {/* Boutons */}
             <div className="flex flex-col md:flex-row gap-4 mt-8">
               {/* Bouton 1 : الأخطاء التصورية */}
               <motion.button
                 onClick={toggleCategories1}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, rotate: 2 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-[#4f772d] text-white text-xl md:text-2xl font-scheherazade font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#31572c] hover:shadow-lg transition duration-300"
               >
@@ -99,7 +122,7 @@ export default function Home() {
               {/* Bouton 2 : الأخطاء المعرفية */}
               <motion.button
                 onClick={toggleCategories2}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, rotate: -2 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-[#d8e29a] text-gray-800 text-xl md:text-2xl font-scheherazade font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#b5c97a] hover:text-gray-900 hover:shadow-lg transition duration-300"
               >

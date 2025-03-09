@@ -2,20 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+
+
+/* Styles globaux pour l'arrière-plan */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #132a13 0%,      /* Vert foncé */
+    #1f3a1f 15%,     /* Nuance intermédiaire */
+    #31572c 30%,     /* Vert moyen */
+    #4a6b3a 45%,     /* Nuance intermédiaire */
+    #4f772d 60%,     /* Vert clair */
+    #6a8c4e 75%,     /* Nuance intermédiaire */
+    #90a955 85%,     /* Vert doux */
+    #b5c97a 90%,     /* Nuance intermédiaire */
+    #d8e29a 95%,     /* Jaune doux (remplace le jaune pâle) */
+    #e8edc8 100%     /* Blanc très doux (remplace le blanc teinté) */
+  );
+  background-size: 200% 200%;
+  animation: gradientAnimation 20s ease infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Animation du dégradé */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
+

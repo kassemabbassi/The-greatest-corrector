@@ -1,10 +1,13 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router=useRouter();
   const [showCategories1, setShowCategories1] = useState(false); // État pour الأخطاء التصورية
   const [showCategories2, setShowCategories2] = useState(false); // État pour الأخطاء المعرفية
-
+  const arabicRoute= encodeURI('/في-علاقته-بنفسه');
+  const arabicSlug = 'في-علاقته-بنفسه'; // Slug en arabe
   // Fonction pour basculer entre la page d'accueil et les catégories
   const toggleCategories1 = () => {
     setShowCategories1(!showCategories1);
@@ -34,7 +37,7 @@ export default function Home() {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="w-10 h-10 md:w-12 md:w-12 text-white"
+            className="w-10 h-10  md:w-12 text-white"
           >
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
           </svg>
@@ -144,9 +147,10 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-4xl md:text-5xl font-bold text-[#90a955] font-scheherazade text-center mb-8"
-            >
-              اختر مجال التصحيح
+              className="text-3xl md:text-4xl text-[#d4af37] mb-8 font-scheherazade italic text-center leading-relaxed hover:text-[#c2a035] transition duration-300"
+            
+              >
+              الأخطاء التصورية
             </motion.h2>
 
             {/* Liste des catégories */}
@@ -200,33 +204,42 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-4xl md:text-5xl font-bold text-[#90a955] font-scheherazade text-center mb-8"
-            >
-              اختر مجال التصحيح
+              className="text-3xl md:text-4xl text-[#d4af37] mb-8 font-scheherazade italic text-center leading-relaxed hover:text-[#c2a035] transition duration-300"
+            
+              >
+            الأخطاء المعرفية
             </motion.h2>
 
             {/* Liste des catégories */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
-              {[
-                "في علاقته بنفسه",
-                "في علاقته بأقرانه",
-                "في علاقته بالمعلم",
-                "في علاقته بالممتلكات العامة",
-              ].map((category, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
-                  whileHover={{ scale: 1.05, rotate: 2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-white bg-opacity-10 backdrop-blur-md rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-opacity-20 transition duration-300"
-                >
-                  <p className="text-2xl md:text-3xl text-white font-scheherazade">
-                    {category}
-                  </p>
-                </motion.div>
-              ))}
+            {[
+  "في علاقته بنفسه",
+  "في علاقته بأقرانه",
+  "في علاقته بالمعلم",
+  "في علاقته بالممتلكات العامة",
+].map((category, index) => (
+  <motion.div
+    key={index}
+    initial={{ opacity: 0, x: -50 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
+    whileHover={{ scale: 1.05, rotate: 2 }}
+    whileTap={{ scale: 0.95 }}
+    onClick={() => {
+      if (category === "في علاقته بنفسه") {
+       // router.push("/في-علاقته-بنفسه*/الأخطاء-المعرفية");
+       
+       //router.push('/في-علاقته-بنفسه');
+       router.push("relation-with-self");
+    }
+    }}
+    className="bg-white bg-opacity-10 backdrop-blur-md rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-opacity-20 transition duration-300"
+  >
+    <p className="text-2xl md:text-3xl text-white font-scheherazade">
+      {category}
+    </p>
+  </motion.div>
+))}
             </div>
 
             {/* Bouton de retour */}

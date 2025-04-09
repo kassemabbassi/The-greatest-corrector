@@ -2,32 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
 /* Styles globaux pour l'arrière-plan */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: white; /* Fond blanc */
+}
+
+
+/* Styles globaux pour l'arrière-plan 
 body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
   background: linear-gradient(
     135deg,
-    #132a13 0%,      /* Vert foncé */
-    #1f3a1f 15%,     /* Nuance intermédiaire */
-    #31572c 30%,     /* Vert moyen */
-    #4a6b3a 45%,     /* Nuance intermédiaire */
-    #4f772d 60%,     /* Vert clair */
-    #6a8c4e 75%,     /* Nuance intermédiaire */
-    #90a955 85%,     /* Vert doux */
-    #b5c97a 90%,     /* Nuance intermédiaire */
-    #d8e29a 95%,     /* Jaune doux (remplace le jaune pâle) */
-    #e8edc8 100%     /* Blanc très doux (remplace le blanc teinté) */
+    #132a13 0%,      
+    #1f3a1f 15%,
+    #31572c 30%,     
+    #4a6b3a 45%,     
+    #4f772d 60%,     
+    #6a8c4e 75%,     
+    #90a955 85%,     
+    #b5c97a 90%,     
+    #d8e29a 95%,
+    #e8edc8 100%     
   );
   background-size: 200% 200%;
   animation: gradientAnimation 20s ease infinite;
 }
 
-/* Animation du dégradé */
+
 @keyframes gradientAnimation {
   0% {
     background-position: 0% 50%;
@@ -38,6 +44,6 @@ body {
   100% {
     background-position: 0% 50%;
   }
-}
+}*/
 
 

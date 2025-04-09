@@ -3,12 +3,10 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 
 export default function Home() {
-  const router=useRouter();
+  const router = useRouter();
   const [showCategories1, setShowCategories1] = useState(false); // État pour الأخطاء التصورية
   const [showCategories2, setShowCategories2] = useState(false); // État pour الأخطاء المعرفية
-  const arabicRoute= encodeURI('/في-علاقته-بنفسه');
-  const arabicSlug = 'في-علاقته-بنفسه'; // Slug en arabe
-  // Fonction pour basculer entre la page d'accueil et les catégories
+
   const toggleCategories1 = () => {
     setShowCategories1(!showCategories1);
     setShowCategories2(false); // Assure que l'autre section est masquée
@@ -20,10 +18,10 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-start p-6" dir="rtl">
+    <div className="min-h-screen flex flex-col items-center justify-start p-6 bg-white" dir="rtl">
       {/* En-tête avec logos et titre */}
       <div className="w-full flex items-center justify-center gap-4 mb-8">
-        {/* Premier logo (à gauche) */}
+        {/* Logo à gauche : Étoile islamique */}
         <motion.div
           whileHover={{ scale: 1.1, rotate: 5 }}
           whileTap={{ scale: 0.9 }}
@@ -31,29 +29,27 @@ export default function Home() {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-10 h-10  md:w-12 text-white"
+            viewBox="0 0 64 64"
+            className="w-12 h-12 md:w-16 md:h-16 text-white"
           >
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            <path
+              fill="currentColor"
+              d="M32 2l6 18h18l-14 10 6 18-16-12-16 12 6-18L8 20h18l6-18z"
+            />
           </svg>
         </motion.div>
 
-        {/* Titre */}
+        {/* Titre principal */}
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-6xl md:text-7xl font-bold text-[#90a955] font-scheherazade text-center tracking-wide hover:text-[#7a9948] transition duration-300"
+          className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent font-amiri text-center tracking-wide"
         >
           المصلح الأعظم
         </motion.h1>
 
-        {/* Deuxième logo (à droite) */}
+        {/* Logo à droite : Étoile islamique */}
         <motion.div
           whileHover={{ scale: 1.1, rotate: -5 }}
           whileTap={{ scale: 0.9 }}
@@ -61,18 +57,26 @@ export default function Home() {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-10 h-10 md:w-12 md:w-12 text-white"
+            viewBox="0 0 64 64"
+            className="w-12 h-12 md:w-16 md:h-16 text-white"
           >
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            <path
+              fill="currentColor"
+              d="M32 2l6 18h18l-14 10 6 18-16-12-16 12 6-18L8 20h18l6-18z"
+            />
           </svg>
         </motion.div>
       </div>
+
+      {/* Slogan (sous-titre) en vert et gras */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+        className="text-3xl md:text-4xl text-[#4f772d] font-bold mb-8 font-amiri italic text-center leading-relaxed"
+      >
+        على خُطاه أخطاء تُصحّح
+      </motion.p>
 
       {/* Contenu principal */}
       <AnimatePresence mode="wait">
@@ -85,29 +89,21 @@ export default function Home() {
             transition={{ duration: 0.5, ease: "easeInOut" }}
             className="w-full flex flex-col items-center"
           >
-            {/* Slogan (sous le titre) */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="text-3xl md:text-4xl text-[#d4af37] mb-8 font-scheherazade italic text-center leading-relaxed hover:text-[#c2a035] transition duration-300"
-            >
-              على خُطاه أخطاء تُصحّح
-            </motion.p>
-
-            {/* Description (paragraphe structuré) */}
+            {/* Description */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5, duration: 0.5 }}
-              className="max-w-3xl bg-white bg-opacity-10 backdrop-blur-md rounded-lg p-8 shadow-lg text-right hover:bg-opacity-20 transition duration-300"
+              className="max-w-3xl bg-gray-100 rounded-lg p-8 shadow-lg text-right"
             >
-              <p className="text-xl md:text-2xl text-white leading-loose font-scheherazade">
-                مرحبًا بكم في "المصلح الأعظم" — موقع تربوي إصلاحي موجه للمعلمين وأولياء الأمور، يهدف إلى تصحيح الأخطاء التصورية والسلوكية لدى المتعلمين استنادًا إلى الأساليب النبوية الحكيمة. فنبينا <span className="text-[#d4af37] font-bold">محمد ﷺ</span> هو "المصلح الأعظم"، معلم البشرية الأول، كفؤٌ لا يُجارى، عالج الأخطاء برفق وحزم، ووضع منهجًا خالدًا في التربية والتقويم يُنير درب كل مربي ومعلم.
-                <br />
-                <br />
-                لنرتقِ معًا بأبنائنا نحو الفهم الصحيح والسلوك القويم!
-              </p>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.5 }}
+                className="text-2xl md:text-3xl text-gray-800 leading-relaxed font-amiri"
+              >
+                مرحبًا بكم في <strong className="text-[#4f772d]">"المصلح الأعظم"</strong> — موقع تربوي إصلاحي موجه للمعلمين وأولياء الأمور، يهدف إلى تصحيح الأخطاء التصورية والسلوكية لدى المتعلمين استنادًا إلى الأساليب النبوية الحكيمة. فنبينا <strong className="text-[#4f772d]">محمد ﷺ</strong> هو <em>"المصلح الأعظم"</em>، معلم البشرية الأول، كفؤٌ لا يُجارى، عالج الأخطاء برفق وحزم، ووضع منهجًا خالدًا في التربية والتقويم يُنير درب كل مربي ومعلم. لنرتقِ معًا بأبنائنا نحو الفهم الصحيح والسلوك القويم!
+              </motion.p>
             </motion.div>
 
             {/* Boutons */}
@@ -117,7 +113,7 @@ export default function Home() {
                 onClick={toggleCategories1}
                 whileHover={{ scale: 1.05, rotate: 2 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-[#4f772d] text-white text-xl md:text-2xl font-scheherazade font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#31572c] hover:shadow-lg transition duration-300"
+                className="bg-[#4f772d] text-white text-2xl md:text-3xl font-amiri font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#31572c] hover:shadow-lg transition duration-300"
               >
                 الأخطاء التصورية
               </motion.button>
@@ -127,9 +123,9 @@ export default function Home() {
                 onClick={toggleCategories2}
                 whileHover={{ scale: 1.05, rotate: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-[#d8e29a] text-gray-800 text-xl md:text-2xl font-scheherazade font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#b5c97a] hover:text-gray-900 hover:shadow-lg transition duration-300"
+                className="bg-[#90a955] text-white text-2xl md:text-3xl font-amiri font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#7a9948] hover:shadow-lg transition duration-300"
               >
-                الأخطاء المعرفية
+                الأخطاء السلوكية
               </motion.button>
             </div>
           </motion.div>
@@ -142,40 +138,70 @@ export default function Home() {
             transition={{ duration: 0.5, ease: "easeInOut" }}
             className="w-full flex flex-col items-center"
           >
-            {/* Titre des catégories */}
-            <motion.h2
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-3xl md:text-4xl text-[#d4af37] mb-8 font-scheherazade italic text-center leading-relaxed hover:text-[#c2a035] transition duration-300"
-            
-              >
-              الأخطاء التصورية
-            </motion.h2>
-
-            {/* Liste des catégories */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+           {/* Liste des catégories */}
+<div className="w-full max-w-4xl space-y-6">
+  {[
+    "في مجال العقيدة",
+    "في مجال العبادات", 
+    "في مجال الأخلاق",
+    "في مجال الهدي القرآني",
+  ].reduce((acc, category, index) => {
+    // Grouper par paires
+    if (index % 2 === 0) {
+      const pair = [
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
+          whileHover={{ scale: 1.05, rotate: 2 }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-[#f0f4f8] rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full md:w-[48%]"
+        >
+          <p className="text-2xl md:text-3xl text-[#4f772d] font-amiri">
+            {category}
+          </p>
+        </motion.div>
+      ];
+      
+      // Ajouter le deuxième élément de la paire s'il existe
+      if (index + 1 < [
+        "في مجال العقيدة",
+        "في مجال العبادات", 
+        "في مجال الأخلاق",
+        "في مجال الهدي القرآني",
+      ].length) {
+        pair.push(
+          <motion.div
+            key={index+1}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 + (index+1) * 0.1, duration: 0.5 }}
+            whileHover={{ scale: 1.05, rotate: 2 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-[#f0f4f8] rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full md:w-[48%]"
+          >
+            <p className="text-2xl md:text-3xl text-[#4f772d] font-amiri">
               {[
                 "في مجال العقيدة",
-                "في مجال العبادات",
+                "في مجال العبادات", 
                 "في مجال الأخلاق",
                 "في مجال الهدي القرآني",
-              ].map((category, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
-                  whileHover={{ scale: 1.05, rotate: 2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-white bg-opacity-10 backdrop-blur-md rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-opacity-20 transition duration-300"
-                >
-                  <p className="text-2xl md:text-3xl text-white font-scheherazade">
-                    {category}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
+              ][index+1]}
+            </p>
+          </motion.div>
+        );
+      }
+      
+      acc.push(
+        <div key={`group-${index}`} className={`flex ${pair.length === 1 ? 'justify-center' : 'justify-between'} gap-4`}>
+          {pair}
+        </div>
+      );
+    }
+    return acc;
+  }, [])}
+</div>
 
             {/* Bouton de retour */}
             <motion.button
@@ -185,7 +211,7 @@ export default function Home() {
               transition={{ delay: 0.8, duration: 0.5 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="mt-8 bg-[#d4af37] text-white text-xl md:text-2xl font-scheherazade font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#c2a035] hover:shadow-lg transition duration-300"
+              className="mt-8 bg-[#4f772d] text-white text-2xl md:text-3xl font-amiri font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#31572c] hover:shadow-lg transition duration-300"
             >
               العودة إلى الصفحة الرئيسية
             </motion.button>
@@ -204,43 +230,96 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-3xl md:text-4xl text-[#d4af37] mb-8 font-scheherazade italic text-center leading-relaxed hover:text-[#c2a035] transition duration-300"
-            
-              >
-            الأخطاء المعرفية
+              className="text-3xl md:text-4xl bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent mb-8 font-amiri italic text-center leading-relaxed"
+            >
+              الأخطاء السلوكية
             </motion.h2>
 
-            {/* Liste des catégories */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
-            {[
-  "في علاقته بنفسه",
-  "في علاقته بأقرانه",
-  "في علاقته بالمعلم",
-  "في علاقته بالممتلكات العامة",
-].map((category, index) => (
-  <motion.div
-    key={index}
-    initial={{ opacity: 0, x: -50 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
-    whileHover={{ scale: 1.05, rotate: 2 }}
-    whileTap={{ scale: 0.95 }}
-    onClick={() => {
-      if (category === "في علاقته بنفسه") {
-       // router.push("/في-علاقته-بنفسه*/الأخطاء-المعرفية");
-       
-       //router.push('/في-علاقته-بنفسه');
-       router.push("relation-with-self");
+          {/* Liste des catégories */}
+<div className="w-full max-w-4xl space-y-6">
+  {[
+    "في علاقته بالممتلكات العامة",
+    "في علاقته بالآخرين(الأقران والمعلّمين)",
+    "في علاقته بنفسه",
+  ].reduce((acc, category, index) => {
+    // Grouper par paires
+    if (index % 2 === 0) {
+      const pair = [
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
+          whileHover={{ scale: 1.05, rotate: 2 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => {
+            if (category === "في علاقته بنفسه") {
+              router.push("/behavioral-mistakes/relation-with-self");
+            }
+            if(category === "في علاقته بالآخرين(الأقران والمعلّمين)") {
+              router.push("/behavioral-mistakes/relation-with-others");
+            }
+            if(category === "في علاقته بالممتلكات العامة") {
+              router.push("/behavioral-mistakes/relation-with-public-property");
+            }
+          }}
+          className="bg-[#f0f4f8] rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full md:w-[48%]"
+        >
+          <p className="text-2xl md:text-3xl text-[#4f772d] font-amiri">
+            {category}
+          </p>
+        </motion.div>
+      ];
+      
+      // Ajouter le deuxième élément de la paire s'il existe
+      if (index + 1 < [
+        "في علاقته بالممتلكات العامة",
+        "في علاقته بالآخرين(الأقران والمعلّمين)",
+        "في علاقته بنفسه",
+      ].length) {
+        const nextCategory = [
+          "في علاقته بالممتلكات العامة",
+          "في علاقته بالآخرين(الأقران والمعلّمين)",
+          "في علاقته بنفسه",
+        ][index+1];
+        
+        pair.push(
+          <motion.div
+            key={index+1}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 + (index+1) * 0.1, duration: 0.5 }}
+            whileHover={{ scale: 1.05, rotate: 2 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              if (nextCategory === "في علاقته بنفسه") {
+                router.push("/behavioral-mistakes/relation-with-self");
+              }
+              if(nextCategory === "في علاقته بالآخرين(الأقران والمعلّمين)") {
+                router.push("/behavioral-mistakes/relation-with-others");
+              }
+              if(nextCategory === "في علاقته بالممتلكات العامة") {
+                router.push("/behavioral-mistakes/relation-with-public-property");
+              }
+            }}
+            className="bg-[#f0f4f8] rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full md:w-[48%]"
+          >
+            <p className="text-2xl md:text-3xl text-[#4f772d] font-amiri">
+              {nextCategory}
+            </p>
+          </motion.div>
+        );
+      }
+      
+      acc.push(
+        <div key={`group-${index}`} className={`flex ${pair.length === 1 ? 'justify-center' : 'justify-between'} gap-4`}>
+          {pair}
+        </div>
+      );
     }
-    }}
-    className="bg-white bg-opacity-10 backdrop-blur-md rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-opacity-20 transition duration-300"
-  >
-    <p className="text-2xl md:text-3xl text-white font-scheherazade">
-      {category}
-    </p>
-  </motion.div>
-))}
-            </div>
+    return acc;
+  }, [])}
+</div>
 
             {/* Bouton de retour */}
             <motion.button
@@ -250,7 +329,7 @@ export default function Home() {
               transition={{ delay: 0.8, duration: 0.5 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="mt-8 bg-[#d4af37] text-white text-xl md:text-2xl font-scheherazade font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#c2a035] hover:shadow-lg transition duration-300"
+              className="mt-8 bg-[#4f772d] text-white text-2xl md:text-3xl font-amiri font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#31572c] hover:shadow-lg transition duration-300"
             >
               العودة إلى الصفحة الرئيسية
             </motion.button>

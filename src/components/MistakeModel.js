@@ -7,19 +7,69 @@ export default function MistakeModel({ betise, reponse, isSelected, onClick }) {
 
   // Fonction pour styliser le texte avec النبي ﷺ
   const formatTextWithProphet = (text) => {
-    return text.split(/(النبي ﷺ)/).map((part, index) => {
-      if (part === "النبي ﷺ") {
-        return (
-          <span
-            key={index}
-            className="text-[#d4af37] font-bold px-2 py-1 rounded-md shadow-sm"
-          >
-            {part}
-          </span>
-        );
+    const prophetMentions = [
+      "النبي ﷺ", "رسول الله ﷺ", "الرسول ﷺ","ﷺ", 
+      "محمد ﷺ", "رسولنا ﷺ", "نبينا ﷺ",
+      "الحبيب ﷺ", "خاتم النبيين ﷺ"
+    ];
+  
+    let result = [];
+    let lastIndex = 0;
+    
+    // Trouver toutes les occurrences
+    for (let i = 0; i < text.length; i++) {
+      for (const mention of prophetMentions) {
+        if (text.startsWith(mention, i)) {
+          // Ajouter le texte avant la mention
+          if (i > lastIndex) {
+            result.push(text.substring(lastIndex, i));
+          }
+          
+          // Ajouter la mention stylisée
+          result.push(
+            <span key={i} className="text-[#4f772d] font-bold px-1 py-0.5 rounded-md bg-[#e8edc8]">
+              {mention}
+            </span>
+          );
+          
+          i += mention.length - 1;
+          lastIndex = i + 1;
+          break;
+        }
       }
-      return part;
-    });
+    }
+    
+    // Ajouter le reste du texte
+    if (lastIndex < text.length) {
+      result.push(text.substring(lastIndex));
+    }
+    
+    return result;
+  };
+
+  // Fonction pour styliser les paragraphes
+  const formatParagraph = (paragraph) => {
+    // D'abord vérifier si le paragraphe commence par *
+    if (paragraph.trim().startsWith("*")) {
+      return (
+        <span className="text-[#d62828] font-bold  bg-[#f8edeb] px-3 py-1 rounded-lg inline-block font-tajawal">
+          {formatTextWithProphet(paragraph.substring(1).trim())}
+        </span>
+      );
+    }
+    
+    
+    // Ensuite vérifier les autres cas
+    if (paragraph.startsWith("🔹") || paragraph.startsWith("💡")) {
+      return (
+        <span className="pr-6 text-[#4f772d] font-bold font-amiri">
+          {formatTextWithProphet(paragraph)}
+        </span>
+      );
+    }
+    
+    // Cas par défaut
+    return formatTextWithProphet(paragraph);
   };
 
   return (
@@ -28,23 +78,22 @@ export default function MistakeModel({ betise, reponse, isSelected, onClick }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className={`w-full rounded-xl p-6 shadow-xl transition duration-300 border-2 border-[#4f772d] border-opacity-50 relative overflow-hidden ${
-        isSelected ? "cursor-default" : "cursor-pointer hover:shadow-2xl"
+      className={`w-full rounded-xl p-6 shadow-lg transition duration-300 ${
+        isSelected
+          ? "bg-white border-2 border-[#4f772d]"
+          : "bg-white hover:bg-gray-50 cursor-pointer"
       }`}
       onClick={!isSelected ? onClick : undefined}
     >
-      {/* Bordure décorative islamique (effet subtil) */}
-      <div className="absolute inset-0 border-2 border-[#d4af37] border-opacity-20 rounded-xl pointer-events-none" />
-
       {/* En-tête */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-4">
-          <FaBookOpen className="w-8 h-8 text-[#d4af37] drop-shadow-md" />
+          <FaBookOpen className="w-8 h-8 text-[#6a994e]" />
           <motion.p
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="text-2xl md:text-3xl text-white font-scheherazade font-semibold tracking-wide"
+            className="text-2xl md:text-3xl text-[#6a994e] font-scheherazade font-semibold tracking-wide"
           >
             {betise}
           </motion.p>
@@ -56,7 +105,7 @@ export default function MistakeModel({ betise, reponse, isSelected, onClick }) {
             onClick={() => setShowReponse(!showReponse)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="text-white text-xl md:text-2xl font-scheherazade font-bold py-2 px-6 rounded-full shadow-md hover:text-[#d4af37] transition duration-300 flex items-center gap-2"
+            className="text-white text-xl md:text-2xl font-tajawal font-bold py-2 px-6 rounded-full shadow-md bg-[#6a994e] hover:bg-[#5a7f3e] transition duration-300 flex items-center gap-2"
           >
             <FaArrowDown
               className={`w-5 h-5 transition-transform ${
@@ -76,19 +125,15 @@ export default function MistakeModel({ betise, reponse, isSelected, onClick }) {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.5 }}
-            className="mt-6 p-8 rounded-lg border border-[#d4af37] border-opacity-30"
+            className="mt-6 p-6 rounded-lg bg-gray-50 border border-[#4f772d] border-opacity-30"
           >
             <div className="space-y-6 text-right" dir="rtl">
               {reponse.split("\n").map((paragraph, index) => (
                 <p
                   key={index}
-                  className={`text-xl md:text-2xl text-[#e8edc8] font-scheherazade leading-relaxed tracking-wide ${
-                    paragraph.startsWith("🔹") || paragraph.startsWith("💡")
-                      ? "pr-6 text-[#d4af37] font-bold"
-                      : ""
-                  }`}
+                  className="text-xl md:text-2xl text-gray-800 font-scheherazade leading-relaxed tracking-wide"
                 >
-                  {formatTextWithProphet(paragraph)}
+                  {formatParagraph(paragraph)}
                 </p>
               ))}
             </div>

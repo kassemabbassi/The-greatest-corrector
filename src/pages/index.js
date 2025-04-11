@@ -179,6 +179,11 @@ export default function Home() {
             transition={{ delay: 0.3 + (index+1) * 0.1, duration: 0.5 }}
             whileHover={{ scale: 1.05, rotate: 2 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              if (category === "في مجال العقيدة") {
+                router.push("/behavioral-mistakes/relation-with-self");
+              }
+            }}
             className="bg-[#f0f4f8] rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full md:w-[48%]"
           >
             <p className="text-2xl md:text-3xl text-[#4f772d] font-amiri">

@@ -1,75 +1,60 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import { FaBookOpen, FaArrowDown } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import { FaBookOpen, FaArrowLeft, FaChevronDown, FaChevronUp } from "react-icons/fa";
+
+// Fonction pour appliquer le style aux mots spécifiques
+const applyProphetMentionStyle = (text) => {
+  const regex = /ﷺ|رسول الله ﷺ|النبي ﷺ/g;
+  return text.replace(regex, (match) => `<span class="prophet-mention">${match}</span>`);
+};
 
 export default function MistakeModel({ betise, reponse, isSelected, onClick }) {
-  const [showReponse, setShowReponse] = useState(false);
+  const [showContent, setShowContent] = useState(false);
+  const [showCards, setShowCards] = useState(false);
+  const [openSection, setOpenSection] = useState(null);
 
-  // Fonction pour styliser le texte avec النبي ﷺ
-  const formatTextWithProphet = (text) => {
-    const prophetMentions = [
-      "النبي ﷺ", "رسول الله ﷺ", "الرسول ﷺ","ﷺ", 
-      "محمد ﷺ", "رسولنا ﷺ", "نبينا ﷺ",
-      "الحبيب ﷺ", "خاتم النبيين ﷺ"
-    ];
-  
-    let result = [];
-    let lastIndex = 0;
-    
-    // Trouver toutes les occurrences
-    for (let i = 0; i < text.length; i++) {
-      for (const mention of prophetMentions) {
-        if (text.startsWith(mention, i)) {
-          // Ajouter le texte avant la mention
-          if (i > lastIndex) {
-            result.push(text.substring(lastIndex, i));
-          }
-          
-          // Ajouter la mention stylisée
-          result.push(
-            <span key={i} className="text-[#4f772d] font-bold px-1 py-0.5 rounded-md bg-[#e8edc8]">
-              {mention}
-            </span>
-          );
-          
-          i += mention.length - 1;
-          lastIndex = i + 1;
-          break;
-        }
+  useEffect(() => {
+    if (isSelected) {
+      setShowContent(true);
+      const timer = setTimeout(() => {
+        setShowCards(true);
+      }, 600);
+      return () => clearTimeout(timer);
+    } else {
+      setShowContent(false);
+      setShowCards(false);
+      setOpenSection(null);
+    }
+  }, [isSelected]);
+
+  const parseResponse = (text) => {
+    const sections = [];
+    const lines = text.split("\n").filter((line) => line.trim() !== "");
+    let currentSection = null;
+
+    lines.forEach((line) => {
+      if (line.trim().startsWith("*")) {
+        if (currentSection) sections.push(currentSection);
+        currentSection = {
+          title: line.trim().substring(1).trim(),
+          content: [],
+        };
+      } else if (currentSection) {
+        currentSection.content.push(line.trim());
+      } else {
+        if (!sections.intro) sections.intro = [];
+        sections.intro.push(line.trim());
       }
-    }
-    
-    // Ajouter le reste du texte
-    if (lastIndex < text.length) {
-      result.push(text.substring(lastIndex));
-    }
-    
-    return result;
+    });
+
+    if (currentSection) sections.push(currentSection);
+    return sections;
   };
 
-  // Fonction pour styliser les paragraphes
-  const formatParagraph = (paragraph) => {
-    // D'abord vérifier si le paragraphe commence par *
-    if (paragraph.trim().startsWith("*")) {
-      return (
-        <span className="text-[#d62828] font-bold  bg-[#f8edeb] px-3 py-1 rounded-lg inline-block font-tajawal">
-          {formatTextWithProphet(paragraph.substring(1).trim())}
-        </span>
-      );
-    }
-    
-    
-    // Ensuite vérifier les autres cas
-    if (paragraph.startsWith("🔹") || paragraph.startsWith("💡")) {
-      return (
-        <span className="pr-6 text-[#4f772d] font-bold font-amiri">
-          {formatTextWithProphet(paragraph)}
-        </span>
-      );
-    }
-    
-    // Cas par défaut
-    return formatTextWithProphet(paragraph);
+  const responseSections = parseResponse(reponse);
+
+  const toggleSection = (index) => {
+    setOpenSection(openSection === index ? null : index);
   };
 
   return (
@@ -78,68 +63,143 @@ export default function MistakeModel({ betise, reponse, isSelected, onClick }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className={`w-full rounded-xl p-6 shadow-lg transition duration-300 ${
-        isSelected
-          ? "bg-white border-2 border-[#4f772d]"
-          : "bg-white hover:bg-gray-50 cursor-pointer"
-      }`}
+      className={`w-full ${isSelected ? "min-h-screen" : ""}`}
       onClick={!isSelected ? onClick : undefined}
     >
-      {/* En-tête */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
-          <FaBookOpen className="w-8 h-8 text-[#6a994e]" />
-          <motion.p
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="text-2xl md:text-3xl text-[#6a994e] font-scheherazade font-semibold tracking-wide"
-          >
-            {betise}
-          </motion.p>
-        </div>
-
-        {/* Bouton Réponse */}
-        {isSelected && (
-          <motion.button
-            onClick={() => setShowReponse(!showReponse)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="text-white text-xl md:text-2xl font-tajawal font-bold py-2 px-6 rounded-full shadow-md bg-[#6a994e] hover:bg-[#5a7f3e] transition duration-300 flex items-center gap-2"
-          >
-            <FaArrowDown
-              className={`w-5 h-5 transition-transform ${
-                showReponse ? "rotate-180" : ""
-              }`}
-            />
-            {showReponse ? "إخفاء" : "إظهار"}
-          </motion.button>
-        )}
-      </div>
-
-      {/* Réponse */}
-      <AnimatePresence>
-        {isSelected && showReponse && (
+      {!isSelected ? (
+        <motion.div
+          className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition duration-300 cursor-pointer"
+          whileHover={{ y: -5 }}
+        >
+          <div className="flex items-center gap-4">
+            <FaBookOpen className="w-8 h-8 text-[#6a994e]" />
+            <p className="text-3xl text-[#4f772d] font-scheherazade font-semibold leading-relaxed">
+              {betise}
+            </p>
+          </div>
+        </motion.div>
+      ) : (
+        <div className="w-full">
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mt-6 p-6 rounded-lg bg-gray-50 border border-[#4f772d] border-opacity-30"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            className="bg-gradient-to-r from-[#4f772d] to-[#90a955] p-6 shadow-md"
           >
-            <div className="space-y-6 text-right" dir="rtl">
-              {reponse.split("\n").map((paragraph, index) => (
-                <p
-                  key={index}
-                  className="text-xl md:text-2xl text-gray-800 font-scheherazade leading-relaxed tracking-wide"
-                >
-                  {formatParagraph(paragraph)}
-                </p>
-              ))}
+            <div className="max-w-6xl mx-auto flex justify-between items-center">
+              <motion.button
+                onClick={onClick}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="text-white text-xl font-tajawal font-bold py-2 px-6 rounded-full bg-white/20 hover:bg-white/30 transition flex items-center gap-2"
+              >
+                <FaArrowLeft className="w-5 h-5" />
+                العودة
+              </motion.button>
+              <motion.h1
+                initial={{ y: -20 }}
+                animate={{ y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-3xl md:text-4xl text-white font-bold font-amiri text-center"
+              >
+                {betise}
+              </motion.h1>
+              <div className="w-24"></div>
             </div>
           </motion.div>
-        )}
-      </AnimatePresence>
+
+          <div className="max-w-7xl mx-auto px-4 py-8">
+            <AnimatePresence>
+              {showContent && responseSections.intro && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{
+                   ascendancy: 0.6,
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.6, ease: "easeOut" },
+                  }}
+                  className="mb-12 p-8 bg-white rounded-xl shadow-lg"
+                >
+                  <div className="space-y-6 text-right" dir="rtl">
+                    {responseSections.intro.map((paragraph, index) => (
+                      <p
+                        key={`intro-${index}`}
+                        className="text-2xl text-gray-800 font-scheherazade leading-relaxed"
+                        dangerouslySetInnerHTML={{
+                          __html: applyProphetMentionStyle(paragraph),
+                        }}
+                      />
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {showCards && (
+              <div className="space-y-8">
+                {responseSections
+                  .filter((s) => typeof s !== "string")
+                  .map((section, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 + 0.3, duration: 0.6 }}
+                      className="bg-white rounded-xl shadow-lg overflow-hidden"
+                    >
+                      <div
+                        className="p-6 cursor-pointer flex justify-between items-center"
+                        onClick={() => toggleSection(index)}
+                      >
+                        <h3 className="text-2xl font-bold text-[#d62828] font-tajawal">
+                          {section.title}
+                        </h3>
+                        <motion.div
+                          animate={{ rotate: openSection === index ? 180 : 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          {openSection === index ? (
+                            <FaChevronUp className="text-[#d62828]" />
+                          ) : (
+                            <FaChevronDown className="text-[#d62828]" />
+                          )}
+                        </motion.div>
+                      </div>
+
+                      <AnimatePresence>
+                        {openSection === index && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            className="overflow-hidden"
+                          >
+                            <div
+                              className="p-6 pt-0 space-y-3 text-right"
+                              dir="rtl"
+                            >
+                              {section.content.map((paragraph, pIndex) => (
+                                <p
+                                  key={pIndex}
+                                  className="text-xl text-gray-800 font-scheherazade leading-relaxed"
+                                  dangerouslySetInnerHTML={{
+                                    __html: applyProphetMentionStyle(paragraph),
+                                  }}
+                                />
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </motion.div>
   );
 }

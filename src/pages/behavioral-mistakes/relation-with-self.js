@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import MistakeModel from "../../components/MistakeModel";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft,FaBookOpen } from "react-icons/fa";
 
 const mistakesList = [
     {
@@ -107,9 +107,8 @@ const mistakesList = [
   },
 ];
 
-export default function Home() {
+export default function Others() {
   const [selectedMistake, setSelectedMistake] = useState(null);
-  // Fonction pour grouper les bêtises par paires
   const groupMistakes = () => {
     const groups = [];
     for (let i = 0; i < mistakesList.length; i += 2) {
@@ -181,62 +180,63 @@ export default function Home() {
         قائمة الأخطاء وتصحيحها
       </motion.p>
 
-      {/* Liste des bêtises - partie modifiée */}
-      <AnimatePresence mode="wait">
-        {!selectedMistake ? (
-          <motion.div
-            key="mistake-list"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="w-full max-w-6xl space-y-6"
-          >
-            {mistakeGroups.map((group, index) => (
-              <motion.div
-                key={index}
-                className={`flex ${group.length === 1 ? 'justify-center' : 'justify-between'} gap-6`}
-              >
-                {group.map((mistake) => (
-                  <motion.div
-                    key={mistake.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.5 }}
-                    onClick={() => setSelectedMistake(mistake.id)}
-                    className={`cursor-pointer transform transition duration-300 ease-in-out hover:scale-105 hover:shadow-2xl hover:bg-white/30 backdrop-blur-sm rounded-2xl ${
-                      group.length === 1 ? 'w-full max-w-lg' : 'w-1/2'
-                    }`}
-                  >
-                    <MistakeModel
-                      betise={mistake.betise}
-                      reponse={mistake.reponse}
-                      isSelected={false}
-                    />
-                  </motion.div>
-                ))}
-              </motion.div>
-            ))}
-          </motion.div>
-        ) : (
-          <motion.div
-            key="selected-mistake"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.5 }}
-            className="w-full max-w-6xl cursor-pointer transform transition duration-300 ease-in-out hover:scale-105 hover:shadow-2xl hover:bg-white/30 backdrop-blur-sm rounded-2xl"
-          >
-            <MistakeModel
-              betise={mistakesList.find((m) => m.id === selectedMistake).betise}
-              reponse={mistakesList.find((m) => m.id === selectedMistake).reponse}
-              isSelected={true}
-              onClick={() => setSelectedMistake(null)}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+     {/* Liste des bêtises - partie modifiée */}
+           <AnimatePresence mode="wait">
+             {!selectedMistake ? (
+               <motion.div
+                 key="mistake-list"
+                 initial={{ opacity: 0 }}
+                 animate={{ opacity: 1 }}
+                 exit={{ opacity: 0 }}
+                 transition={{ duration: 0.5 }}
+                 className="w-full max-w-6xl space-y-6"
+               >
+                 {mistakeGroups.map((group, index) => (
+                   <motion.div
+                     key={index}
+                     className={`flex ${group.length === 1 ? 'justify-center' : 'justify-between'} gap-6`}
+                   >
+                     {group.map((mistake) => (
+                       <motion.div
+                         key={mistake.id}
+                         initial={{ opacity: 0, y: 20 }}
+                         animate={{ opacity: 1, y: 0 }}
+                         exit={{ opacity: 0, y: -20 }}
+                         transition={{ duration: 0.5 }}
+                         onClick={() => setSelectedMistake(mistake.id)}
+                         className={`cursor-pointer transform transition duration-300 ease-in-out hover:scale-105 hover:shadow-2xl hover:bg-white/30 backdrop-blur-sm rounded-2xl ${
+                           group.length === 1 ? 'w-full max-w-lg' : 'w-1/2'
+                         }`}
+                       >
+                         <MistakeModel
+                           betise={mistake.betise}
+                           reponse={mistake.reponse}
+                           isSelected={false}
+                         />
+                       </motion.div>
+                     ))}
+                   </motion.div>
+                 ))}
+               </motion.div>
+             ) : (
+               <motion.div
+                 key="selected-mistake"
+                 initial={{ opacity: 0, scale: 0.9 }}
+                 animate={{ opacity: 1, scale: 1 }}
+                 exit={{ opacity: 0, scale: 0.9 }}
+                 transition={{ duration: 0.5 }}
+                 className="w-full max-w-6xl cursor-pointer transform transition duration-300 ease-in-out hover:scale-105 hover:shadow-2xl hover:bg-white/30 backdrop-blur-sm rounded-2xl"
+               >
+                 <MistakeModel
+                   betise={mistakesList.find((m) => m.id === selectedMistake).betise}
+                   reponse={mistakesList.find((m) => m.id === selectedMistake).reponse}
+                   isSelected={true}
+                   onClick={() => setSelectedMistake(null)}
+                 />
+               </motion.div>
+             )}
+           </AnimatePresence>
+     
 
       {/* Bouton de retour */}
       {selectedMistake && (

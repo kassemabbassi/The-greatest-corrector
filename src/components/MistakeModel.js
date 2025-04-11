@@ -4,8 +4,33 @@ import { FaBookOpen, FaArrowLeft, FaChevronDown, FaChevronUp } from "react-icons
 
 // Fonction pour appliquer le style aux mots spécifiques
 const applyProphetMentionStyle = (text) => {
-  const regex = /ﷺ|رسول الله ﷺ|النبي ﷺ/g;
-  return text.replace(regex, (match) => `<span class="prophet-mention">${match}</span>`);
+  // Expressions régulières pour les différentes mentions
+  const prophetRegex = /ﷺ|رسول الله ﷺ|النبي ﷺ|النبوية|الأنبياء|الرسل/g;
+  const quranRegex = /قرآنية|القرآن/g;
+  const allahRegex = /(^|\s)الله($|\s|[^\u0621-\u064A])/g; // Détecte الله comme mot indépendant
+  const referenceRegex = /الدلالة|رواه|البخاري|مسلم|الترمذي|الصحيح/g;
+
+  // Appliquer le style aux mentions du Prophète
+  let styledText = text.replace(prophetRegex, (match) => 
+    `<span class="prophet-mention">${match}</span>`
+  );
+
+  // Appliquer le style aux mentions du Coran
+  styledText = styledText.replace(quranRegex, (match) =>
+    `<span class="quran-mention">${match}</span>`
+  );
+
+  // Appliquer le style aux mentions de Allah et Rabb
+  styledText = styledText.replace(allahRegex, (match, before, after) =>
+    `${before}<span class="allah-mention">الله</span>${after}`
+  );
+
+  // Appliquer le style aux références
+  styledText = styledText.replace(referenceRegex, (match) =>
+    `<span class="reference-mention">${match}</span>`
+  );
+
+  return styledText;
 };
 
 export default function MistakeModel({ betise, reponse, isSelected, onClick }) {

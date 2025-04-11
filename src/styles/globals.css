@@ -12,8 +12,37 @@ body {
 
 
 .prophet-mention {
-  background: linear-gradient(135deg, #FFECB3 0%, #FFD700 50%, #FFC107 100%); /* Dégradé doré brillant */
-  padding: 3px 8px; /* Espacement légèrement augmenté pour plus de clarté */
-  border-radius: 6px; /* Coins arrondis plus doux */
-  box-shadow: inset 0 0 5px rgba(255, 215, 0, 0.7); /* Ombre interne pour effet brillant */
+  background: linear-gradient(135deg, #FFECB3 0%, #FFD700 50%, #FFC107 100%);
+  padding: 3px 8px;
+  border-radius: 6px;
+  box-shadow: inset 0 0 5px rgba(255, 215, 0, 0.7);
+}
+
+.quran-mention {
+  background: linear-gradient(135deg, #E3F2FD 0%, #64B5F6 50%, #0D47A1 100%);
+  padding: 3px 8px;
+  border-radius: 6px;
+  box-shadow: 
+    inset 0 0 8px rgba(100, 181, 246, 0.6),
+    0 2px 4px rgba(13, 71, 161, 0.2);
+  color: #0D47A1;
+  font-weight: 600;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+.allah-mention {
+  background: linear-gradient(135deg, #FFF8E1 0%, #FFE082 50%, #FFB300 100%); /* Dégradé doré doux, légèrement plus clair */
+  padding: 3px 8px;
+  border-radius: 6px;
+  box-shadow: inset 0 0 5px rgba(255, 193, 7, 0.7); /* Ombre interne similaire mais avec une teinte ambrée */
+  color: #3E2723; /* Marron foncé pour le contraste et l'élégance */
+  font-weight: 500;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6); /* Ombre de texte légèrement plus lumineuse */
+}
+
+.reference-mention {
+  font-weight: 700; /* Texte en gras */
+  color: #2E7D32; /* Vert foncé élégant */
+  border-bottom: 1px solid #4CAF50; /* Soulignement discret */
+  padding-bottom: 1px;
 }

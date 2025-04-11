@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 export default function Home() {
   const router = useRouter();
   const [showCategories1, setShowCategories1] = useState(false); // État pour الأخطاء التصورية
-  const [showCategories2, setShowCategories2] = useState(false); // État pour الأخطاء المعرفية
+  const [showCategories2, setShowCategories2] = useState(false); // État pour الأخطاء السلوكية
 
   const toggleCategories1 = () => {
     setShowCategories1(!showCategories1);
@@ -118,7 +118,7 @@ export default function Home() {
                 الأخطاء التصورية
               </motion.button>
 
-              {/* Bouton 2 : الأخطاء المعرفية */}
+              {/* Bouton 2 : الأخطاء السلوكية */}
               <motion.button
                 onClick={toggleCategories2}
                 whileHover={{ scale: 1.05, rotate: -2 }}
@@ -138,75 +138,83 @@ export default function Home() {
             transition={{ duration: 0.5, ease: "easeInOut" }}
             className="w-full flex flex-col items-center"
           >
-           {/* Liste des catégories */}
-<div className="w-full max-w-4xl space-y-6">
-  {[
-    "في مجال العقيدة",
-    "في مجال العبادات", 
-    "في مجال الأخلاق",
-    "في مجال الهدي القرآني",
-  ].reduce((acc, category, index) => {
-    // Grouper par paires
-    if (index % 2 === 0) {
-      const pair = [
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
-          whileHover={{ scale: 1.05, rotate: 2 }}
-          whileTap={{ scale: 0.95 }}
-          className="bg-[#f0f4f8] rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full md:w-[48%]"
-        >
-          <p className="text-2xl md:text-3xl text-[#4f772d] font-amiri">
-            {category}
-          </p>
-        </motion.div>
-      ];
-      
-      // Ajouter le deuxième élément de la paire s'il existe
-      if (index + 1 < [
-        "في مجال العقيدة",
-        "في مجال العبادات", 
-        "في مجال الأخلاق",
-        "في مجال الهدي القرآني",
-      ].length) {
-        pair.push(
-          <motion.div
-            key={index+1}
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 + (index+1) * 0.1, duration: 0.5 }}
-            whileHover={{ scale: 1.05, rotate: 2 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => {
-              if (category === "في مجال العقيدة") {
-                router.push("/behavioral-mistakes/relation-with-self");
-              }
-            }}
-            className="bg-[#f0f4f8] rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full md:w-[48%]"
-          >
-            <p className="text-2xl md:text-3xl text-[#4f772d] font-amiri">
+            {/* Liste des catégories pour الأخطاء التصورية */}
+            <div className="w-full max-w-4xl space-y-6">
               {[
                 "في مجال العقيدة",
                 "في مجال العبادات", 
                 "في مجال الأخلاق",
                 "في مجال الهدي القرآني",
-              ][index+1]}
-            </p>
-          </motion.div>
-        );
-      }
-      
-      acc.push(
-        <div key={`group-${index}`} className={`flex ${pair.length === 1 ? 'justify-center' : 'justify-between'} gap-4`}>
-          {pair}
-        </div>
-      );
-    }
-    return acc;
-  }, [])}
-</div>
+              ].reduce((acc, category, index, arr) => {
+                // Grouper par paires
+                if (index % 2 === 0) {
+                  const pair = [
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
+                      whileHover={{ scale: 1.05, rotate: 2 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => {
+                        if (category === "في مجال العقيدة") {
+                          router.push("/conceptual-mistakes/relation-with-creed");
+                        } else if (category === "في مجال العبادات") {
+                          router.push("/conceptual-mistakes/relation-with-worship");
+                        } else if (category === "في مجال الأخلاق") {
+                          router.push("/conceptual-mistakes/relation-with-ethics");
+                        } else if (category === "في مجال الهدي القرآني") {
+                          router.push("/conceptual-mistakes/relation-with-quranic-guidance");
+                        }
+                      }}
+                      className="bg-[#f0f4f8] rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full md:w-[48%]"
+                    >
+                      <p className="text-2xl md:text-3xl text-[#4f772d] font-amiri">
+                        {category}
+                      </p>
+                    </motion.div>
+                  ];
+                  
+                  // Ajouter le deuxième élément de la paire s'il existe
+                  if (index + 1 < arr.length) {
+                    const nextCategory = arr[index + 1];
+                    pair.push(
+                      <motion.div
+                        key={index + 1}
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.3 + (index + 1) * 0.1, duration: 0.5 }}
+                        whileHover={{ scale: 1.05, rotate: 2 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => {
+                          if (nextCategory === "في مجال العقيدة") {
+                            router.push("/conceptual-mistakes/relation-with-creed");
+                          } else if (nextCategory === "في مجال العبادات") {
+                            router.push("/conceptual-mistakes/relation-with-worship");
+                          } else if (nextCategory === "في مجال الأخلاق") {
+                            router.push("/conceptual-mistakes/relation-with-ethics");
+                          } else if (nextCategory === "في مجال الهدي القرآني") {
+                            router.push("/conceptual-mistakes/relation-with-quranic-guidance");
+                          }
+                        }}
+                        className="bg-[#f0f4f8] rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full md:w-[48%]"
+                      >
+                        <p className="text-2xl md:text-3xl text-[#4f772d] font-amiri">
+                          {nextCategory}
+                        </p>
+                      </motion.div>
+                    );
+                  }
+                  
+                  acc.push(
+                    <div key={`group-${index}`} className={`flex ${pair.length === 1 ? 'justify-center' : 'justify-between'} gap-4`}>
+                      {pair}
+                    </div>
+                  );
+                }
+                return acc;
+              }, [])}
+            </div>
 
             {/* Bouton de retour */}
             <motion.button
@@ -230,7 +238,7 @@ export default function Home() {
             transition={{ duration: 0.5, ease: "easeInOut" }}
             className="w-full flex flex-col items-center"
           >
-            {/* Titre des catégories */}
+            {/* Titre des catégories pour الأخطاء السلوكية */}
             <motion.h2
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -240,91 +248,78 @@ export default function Home() {
               الأخطاء السلوكية
             </motion.h2>
 
-          {/* Liste des catégories */}
-<div className="w-full max-w-4xl space-y-6">
-  {[
-    "في علاقته بالممتلكات العامة",
-    "في علاقته بالآخرين(الأقران والمعلّمين)",
-    "في علاقته بنفسه",
-  ].reduce((acc, category, index) => {
-    // Grouper par paires
-    if (index % 2 === 0) {
-      const pair = [
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
-          whileHover={{ scale: 1.05, rotate: 2 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => {
-            if (category === "في علاقته بنفسه") {
-              router.push("/behavioral-mistakes/relation-with-self");
-            }
-            if(category === "في علاقته بالآخرين(الأقران والمعلّمين)") {
-              router.push("/behavioral-mistakes/relation-with-others");
-            }
-            if(category === "في علاقته بالممتلكات العامة") {
-              router.push("/behavioral-mistakes/relation-with-public-property");
-            }
-          }}
-          className="bg-[#f0f4f8] rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full md:w-[48%]"
-        >
-          <p className="text-2xl md:text-3xl text-[#4f772d] font-amiri">
-            {category}
-          </p>
-        </motion.div>
-      ];
-      
-      // Ajouter le deuxième élément de la paire s'il existe
-      if (index + 1 < [
-        "في علاقته بالممتلكات العامة",
-        "في علاقته بالآخرين(الأقران والمعلّمين)",
-        "في علاقته بنفسه",
-      ].length) {
-        const nextCategory = [
-          "في علاقته بالممتلكات العامة",
-          "في علاقته بالآخرين(الأقران والمعلّمين)",
-          "في علاقته بنفسه",
-        ][index+1];
-        
-        pair.push(
-          <motion.div
-            key={index+1}
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 + (index+1) * 0.1, duration: 0.5 }}
-            whileHover={{ scale: 1.05, rotate: 2 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => {
-              if (nextCategory === "في علاقته بنفسه") {
-                router.push("/behavioral-mistakes/relation-with-self");
-              }
-              if(nextCategory === "في علاقته بالآخرين(الأقران والمعلّمين)") {
-                router.push("/behavioral-mistakes/relation-with-others");
-              }
-              if(nextCategory === "في علاقته بالممتلكات العامة") {
-                router.push("/behavioral-mistakes/relation-with-public-property");
-              }
-            }}
-            className="bg-[#f0f4f8] rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full md:w-[48%]"
-          >
-            <p className="text-2xl md:text-3xl text-[#4f772d] font-amiri">
-              {nextCategory}
-            </p>
-          </motion.div>
-        );
-      }
-      
-      acc.push(
-        <div key={`group-${index}`} className={`flex ${pair.length === 1 ? 'justify-center' : 'justify-between'} gap-4`}>
-          {pair}
-        </div>
-      );
-    }
-    return acc;
-  }, [])}
-</div>
+            {/* Liste des catégories pour الأخطاء السلوكية */}
+            <div className="w-full max-w-4xl space-y-6">
+              {[
+                "في علاقته بالممتلكات العامة",
+                "في علاقته بالآخرين(الأقران والمعلّمين)",
+                "في علاقته بنفسه",
+              ].reduce((acc, category, index, arr) => {
+                // Grouper par paires
+                if (index % 2 === 0) {
+                  const pair = [
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
+                      whileHover={{ scale: 1.05, rotate: 2 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => {
+                        if (category === "في علاقته بنفسه") {
+                          router.push("/behavioral-mistakes/relation-with-self");
+                        } else if (category === "في علاقته بالآخرين(الأقران والمعلّمين)") {
+                          router.push("/behavioral-mistakes/relation-with-others");
+                        } else if (category === "في علاقته بالممتلكات العامة") {
+                          router.push("/behavioral-mistakes/relation-with-public-property");
+                        }
+                      }}
+                      className="bg-[#f0f4f8] rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full md:w-[48%]"
+                    >
+                      <p className="text-2xl md:text-3xl text-[#4f772d] font-amiri">
+                        {category}
+                      </p>
+                    </motion.div>
+                  ];
+                  
+                  // Ajouter le deuxième élément de la paire s'il existe
+                  if (index + 1 < arr.length) {
+                    const nextCategory = arr[index + 1];
+                    pair.push(
+                      <motion.div
+                        key={index + 1}
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.3 + (index + 1) * 0.1, duration: 0.5 }}
+                        whileHover={{ scale: 1.05, rotate: 2 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => {
+                          if (nextCategory === "في علاقته بنفسه") {
+                            router.push("/behavioral-mistakes/relation-with-self");
+                          } else if (nextCategory === "في علاقته بالآخرين(الأقران والمعلّمين)") {
+                            router.push("/behavioral-mistakes/relation-with-others");
+                          } else if (nextCategory === "في علاقته بالممتلكات العامة") {
+                            router.push("/behavioral-mistakes/relation-with-public-property");
+                          }
+                        }}
+                        className="bg-[#f0f4f8] rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full md:w-[48%]"
+                      >
+                        <p className="text-2xl md:text-3xl text-[#4f772d] font-amiri">
+                          {nextCategory}
+                        </p>
+                      </motion.div>
+                    );
+                  }
+                  
+                  acc.push(
+                    <div key={`group-${index}`} className={`flex ${pair.length === 1 ? 'justify-center' : 'justify-between'} gap-4`}>
+                      {pair}
+                    </div>
+                  );
+                }
+                return acc;
+              }, [])}
+            </div>
 
             {/* Bouton de retour */}
             <motion.button

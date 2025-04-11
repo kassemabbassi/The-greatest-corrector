@@ -18,19 +18,19 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-start p-6 bg-white" dir="rtl">
+    <div className="min-h-screen flex flex-col items-center justify-start p-4 sm:p-6 bg-white" dir="rtl">
       {/* En-tête avec logos et titre */}
-      <div className="w-full flex items-center justify-center gap-4 mb-8">
+      <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
         {/* Logo à gauche : Étoile islamique */}
         <motion.div
           whileHover={{ scale: 1.1, rotate: 5 }}
           whileTap={{ scale: 0.9 }}
-          className="w-16 h-16 md:w-20 md:h-20 bg-[#4f772d] rounded-full flex items-center justify-center shadow-lg hover:bg-[#31572c] transition duration-300"
+          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-[#4f772d] rounded-full flex items-center justify-center shadow-lg hover:bg-[#31572c] transition duration-300"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 64 64"
-            className="w-12 h-12 md:w-16 md:h-16 text-white"
+            className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 text-white"
           >
             <path
               fill="currentColor"
@@ -44,7 +44,7 @@ export default function Home() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent font-amiri text-center tracking-wide"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent font-amiri text-center tracking-wide"
         >
           المصلح الأعظم
         </motion.h1>
@@ -53,12 +53,12 @@ export default function Home() {
         <motion.div
           whileHover={{ scale: 1.1, rotate: -5 }}
           whileTap={{ scale: 0.9 }}
-          className="w-16 h-16 md:w-20 md:h-20 bg-[#4f772d] rounded-full flex items-center justify-center shadow-lg hover:bg-[#31572c] transition duration-300"
+          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-[#4f772d] rounded-full flex items-center justify-center shadow-lg hover:bg-[#31572c] transition duration-300"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 64 64"
-            className="w-12 h-12 md:w-16 md:h-16 text-white"
+            className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 text-white"
           >
             <path
               fill="currentColor"
@@ -73,7 +73,7 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.5 }}
-        className="text-3xl md:text-4xl text-[#4f772d] font-bold mb-8 font-amiri italic text-center leading-relaxed"
+        className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#4f772d] font-bold mb-8 font-amiri italic text-center leading-relaxed"
       >
         على خُطاه أخطاء تُصحّح
       </motion.p>
@@ -94,26 +94,26 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5, duration: 0.5 }}
-              className="max-w-3xl bg-gray-100 rounded-lg p-8 shadow-lg text-right"
+              className="w-full max-w-3xl bg-gray-100 rounded-lg p-4 sm:p-6 md:p-8 shadow-lg text-right"
             >
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.5 }}
-                className="text-2xl md:text-3xl text-gray-800 leading-relaxed font-amiri"
+                className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 leading-relaxed font-amiri"
               >
                 مرحبًا بكم في <strong className="text-[#4f772d]">"المصلح الأعظم"</strong> — موقع تربوي إصلاحي موجه للمعلمين وأولياء الأمور، يهدف إلى تصحيح الأخطاء التصورية والسلوكية لدى المتعلمين استنادًا إلى الأساليب النبوية الحكيمة. فنبينا <strong className="text-[#4f772d]">محمد ﷺ</strong> هو <em>"المصلح الأعظم"</em>، معلم البشرية الأول، كفؤٌ لا يُجارى، عالج الأخطاء برفق وحزم، ووضع منهجًا خالدًا في التربية والتقويم يُنير درب كل مربي ومعلم. لنرتقِ معًا بأبنائنا نحو الفهم الصحيح والسلوك القويم!
               </motion.p>
             </motion.div>
 
             {/* Boutons */}
-            <div className="flex flex-col md:flex-row gap-4 mt-8">
+            <div className="flex flex-col sm:flex-row gap-4 mt-8 w-full max-w-3xl">
               {/* Bouton 1 : الأخطاء التصورية */}
               <motion.button
                 onClick={toggleCategories1}
                 whileHover={{ scale: 1.05, rotate: 2 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-[#4f772d] text-white text-2xl md:text-3xl font-amiri font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#31572c] hover:shadow-lg transition duration-300"
+                className="bg-[#4f772d] text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-amiri font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#31572c] hover:shadow-lg transition duration-300 flex-1"
               >
                 الأخطاء التصورية
               </motion.button>
@@ -123,7 +123,7 @@ export default function Home() {
                 onClick={toggleCategories2}
                 whileHover={{ scale: 1.05, rotate: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-[#90a955] text-white text-2xl md:text-3xl font-amiri font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#7a9948] hover:shadow-lg transition duration-300"
+                className="bg-[#90a955] text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-amiri font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#7a9948] hover:shadow-lg transition duration-300 flex-1"
               >
                 الأخطاء السلوكية
               </motion.button>
@@ -142,11 +142,10 @@ export default function Home() {
             <div className="w-full max-w-4xl space-y-6">
               {[
                 "في مجال العقيدة",
-                "في مجال العبادات", 
+                "في مجال العبادات",
                 "في مجال الأخلاق",
                 "في مجال الهدي القرآني",
               ].reduce((acc, category, index, arr) => {
-                // Grouper par paires
                 if (index % 2 === 0) {
                   const pair = [
                     <motion.div
@@ -167,15 +166,14 @@ export default function Home() {
                           router.push("/conceptual-mistakes/relation-with-quranic-guidance");
                         }
                       }}
-                      className="bg-[#f0f4f8] rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full md:w-[48%]"
+                      className="bg-[#f0f4f8] rounded-lg p-4 sm:p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full"
                     >
-                      <p className="text-2xl md:text-3xl text-[#4f772d] font-amiri">
+                      <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#4f772d] font-amiri">
                         {category}
                       </p>
-                    </motion.div>
+                    </motion.div>,
                   ];
-                  
-                  // Ajouter le deuxième élément de la paire s'il existe
+
                   if (index + 1 < arr.length) {
                     const nextCategory = arr[index + 1];
                     pair.push(
@@ -197,17 +195,20 @@ export default function Home() {
                             router.push("/conceptual-mistakes/relation-with-quranic-guidance");
                           }
                         }}
-                        className="bg-[#f0f4f8] rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full md:w-[48%]"
+                        className="bg-[#f0f4f8] rounded-lg p-4 sm:p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full"
                       >
-                        <p className="text-2xl md:text-3xl text-[#4f772d] font-amiri">
+                        <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#4f772d] font-amiri">
                           {nextCategory}
                         </p>
                       </motion.div>
                     );
                   }
-                  
+
                   acc.push(
-                    <div key={`group-${index}`} className={`flex ${pair.length === 1 ? 'justify-center' : 'justify-between'} gap-4`}>
+                    <div
+                      key={`group-${index}`}
+                      className={`flex flex-col sm:flex-row ${pair.length === 1 ? "justify-center" : "justify-between"} gap-4 w-full`}
+                    >
                       {pair}
                     </div>
                   );
@@ -224,7 +225,7 @@ export default function Home() {
               transition={{ delay: 0.8, duration: 0.5 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="mt-8 bg-[#4f772d] text-white text-2xl md:text-3xl font-amiri font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#31572c] hover:shadow-lg transition duration-300"
+              className="mt-8 bg-[#4f772d] text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-amiri font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#31572c] hover:shadow-lg transition duration-300"
             >
               العودة إلى الصفحة الرئيسية
             </motion.button>
@@ -243,7 +244,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-3xl md:text-4xl bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent mb-8 font-amiri italic text-center leading-relaxed"
+              className="text-2xl sm:text-3xl md:text-4xl bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent mb-8 font-amiri italic text-center leading-relaxed"
             >
               الأخطاء السلوكية
             </motion.h2>
@@ -255,7 +256,6 @@ export default function Home() {
                 "في علاقته بالآخرين(الأقران والمعلّمين)",
                 "في علاقته بنفسه",
               ].reduce((acc, category, index, arr) => {
-                // Grouper par paires
                 if (index % 2 === 0) {
                   const pair = [
                     <motion.div
@@ -274,15 +274,14 @@ export default function Home() {
                           router.push("/behavioral-mistakes/relation-with-public-property");
                         }
                       }}
-                      className="bg-[#f0f4f8] rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full md:w-[48%]"
+                      className="bg-[#f0f4f8] rounded-lg p-4 sm:p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full"
                     >
-                      <p className="text-2xl md:text-3xl text-[#4f772d] font-amiri">
+                      <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#4f772d] font-amiri">
                         {category}
                       </p>
-                    </motion.div>
+                    </motion.div>,
                   ];
-                  
-                  // Ajouter le deuxième élément de la paire s'il existe
+
                   if (index + 1 < arr.length) {
                     const nextCategory = arr[index + 1];
                     pair.push(
@@ -302,17 +301,20 @@ export default function Home() {
                             router.push("/behavioral-mistakes/relation-with-public-property");
                           }
                         }}
-                        className="bg-[#f0f4f8] rounded-lg p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full md:w-[48%]"
+                        className="bg-[#f0f4f8] rounded-lg p-4 sm:p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full"
                       >
-                        <p className="text-2xl md:text-3xl text-[#4f772d] font-amiri">
+                        <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#4f772d] font-amiri">
                           {nextCategory}
                         </p>
                       </motion.div>
                     );
                   }
-                  
+
                   acc.push(
-                    <div key={`group-${index}`} className={`flex ${pair.length === 1 ? 'justify-center' : 'justify-between'} gap-4`}>
+                    <div
+                      key={`group-${index}`}
+                      className={`flex flex-col sm:flex-row ${pair.length === 1 ? "justify-center" : "justify-between"} gap-4 w-full`}
+                    >
                       {pair}
                     </div>
                   );
@@ -329,7 +331,7 @@ export default function Home() {
               transition={{ delay: 0.8, duration: 0.5 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="mt-8 bg-[#4f772d] text-white text-2xl md:text-3xl font-amiri font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#31572c] hover:shadow-lg transition duration-300"
+              className="mt-8 bg-[#4f772d] text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-amiri font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#31572c] hover:shadow-lg transition duration-300"
             >
               العودة إلى الصفحة الرئيسية
             </motion.button>

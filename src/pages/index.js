@@ -159,11 +159,11 @@ export default function Home() {
                         if (category === "في مجال العقيدة") {
                           router.push("/conceptual-mistakes/relation-with-creed");
                         } else if (category === "في مجال العبادات") {
-                          router.push("/conceptual-mistakes/relation-with-worship");
+                          router.push("/conceptual-mistakes/In-the-field-of-acts-of-worship");
                         } else if (category === "في مجال الأخلاق") {
-                          router.push("/conceptual-mistakes/relation-with-ethics");
+                          router.push("/conceptual-mistakes/In-the-field-of-ethics");
                         } else if (category === "في مجال الهدي القرآني") {
-                          router.push("/conceptual-mistakes/relation-with-quranic-guidance");
+                          router.push("/conceptual-mistakes/quranic-guidance");
                         }
                       }}
                       className="bg-[#f0f4f8] rounded-lg p-4 sm:p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full"
@@ -188,11 +188,11 @@ export default function Home() {
                           if (nextCategory === "في مجال العقيدة") {
                             router.push("/conceptual-mistakes/relation-with-creed");
                           } else if (nextCategory === "في مجال العبادات") {
-                            router.push("/conceptual-mistakes/relation-with-worship");
+                            router.push("/conceptual-mistakes/In-the-field-of-acts-of-worship");
                           } else if (nextCategory === "في مجال الأخلاق") {
                             router.push("/conceptual-mistakes/relation-with-ethics");
                           } else if (nextCategory === "في مجال الهدي القرآني") {
-                            router.push("/conceptual-mistakes/relation-with-quranic-guidance");
+                            router.push("/conceptual-mistakes/quranic-guidance");
                           }
                         }}
                         className="bg-[#f0f4f8] rounded-lg p-4 sm:p-6 shadow-lg text-center cursor-pointer hover:bg-[#e2e8f0] transition duration-300 w-full"

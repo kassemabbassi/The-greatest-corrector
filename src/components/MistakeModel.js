@@ -4,10 +4,13 @@ import { FaBookOpen, FaArrowLeft, FaChevronDown, FaChevronUp } from "react-icons
 
 // Function to apply styles to specific words
 const applyProphetMentionStyle = (text) => {
+  // Expressions régulières modifiées
   const prophetRegex = /ﷺ|رسول الله ﷺ|النبي ﷺ|النبوية|الأنبياء|الرسل/g;
   const quranRegex = /قرآنية|القرآن/g;
   const allahRegex = /(^|\s)الله($|\s|[^\u0621-\u064A])/g;
-  const referenceRegex = /الدلالة|رواه|البخاري|مسلم|الترمذي|الصحيح/g;
+  
+  // Modifié pour ne matcher que "مسلم" seul (avec ou sans espace autour)
+  const referenceRegex = /الدلالة|رواه|البخاري|(^|\s)مسلم($|\s)|الترمذي|الصحيح/g;
 
   let styledText = text.replace(prophetRegex, (match) => 
     `<span class="prophet-mention">${match}</span>`
@@ -18,13 +21,13 @@ const applyProphetMentionStyle = (text) => {
   styledText = styledText.replace(allahRegex, (match, before, after) =>
     `${before}<span class="allah-mention">الله</span>${after}`
   );
-  styledText = styledText.replace(referenceRegex, (match) =>
-    `<span class="reference-mention">${match}</span>`
+  styledText = styledText.replace(referenceRegex, (match, before, after) =>
+    before ? `${before}<span class="reference-mention">مسلم</span>${after}` 
+           : `<span class="reference-mention">${match}</span>`
   );
 
   return styledText;
 };
-
 export default function MistakeModel({ betise, reponse, isSelected, onClick }) {
   const [showContent, setShowContent] = useState(false);
   const [showCards, setShowCards] = useState(false);

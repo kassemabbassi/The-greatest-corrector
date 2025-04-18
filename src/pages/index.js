@@ -16,6 +16,7 @@ export default function Home() {
     setShowCategories2(!showCategories2);
     setShowCategories1(false); // Assure que l'autre section est masquée
   };
+  
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-start p-4 sm:p-6 bg-white" dir="rtl">
@@ -96,14 +97,16 @@ export default function Home() {
               transition={{ delay: 0.5, duration: 0.5 }}
               className="w-full max-w-3xl bg-gray-100 rounded-lg p-4 sm:p-6 md:p-8 shadow-lg text-right"
             >
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.5 }}
-                className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 leading-relaxed font-amiri"
-              >
-                مرحبًا بكم في <strong className="text-[#4f772d]">"المصلح الأعظم"</strong> — موقع تربوي إصلاحي موجه للمعلمين وأولياء الأمور، يهدف إلى تصحيح الأخطاء التصورية والسلوكية لدى المتعلمين استنادًا إلى الأساليب النبوية الحكيمة. فنبينا <strong className="text-[#4f772d]">محمد ﷺ</strong> هو <em>"المصلح الأعظم"</em>، معلم البشرية الأول، كفؤٌ لا يُجارى، عالج الأخطاء برفق وحزم، ووضع منهجًا خالدًا في التربية والتقويم يُنير درب كل مربي ومعلم. لنرتقِ معًا بأبنائنا نحو الفهم الصحيح والسلوك القويم!
-              </motion.p>
+             <motion.p
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.6, duration: 0.5 }}
+  className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 leading-relaxed font-amiri"
+>
+  مرحبًا بكم في <strong className="text-[#4f772d]">"المُصلِح الأعظم"</strong> موقع تربوي إصلاحي موجَّه للمعلِّمين وأولياء الأمور، يهدف إلى تصحيح الأخطاء التصوُّريَّة والسلوكيَّة لدى المتعلِّمين استنادًا إلى الأساليب النبويَّة الحكيمة. فنبينا <strong className="text-[#4f772d]">محمد ﷺ</strong> هو "المصلِّح الأعظم"، معلِّم البشريَّة الأوَّل، كفءٌ لا يُجارى، عالج الأخطاء برفقٍ وحزم، ووضع منهجًا خالدًا في التربية والتقويم يُنير درب كلِّ مربٍّ ومعلِّم.
+  <br />
+  لِنرتقِ معًا بأبنائنا نحو الفهم الصحيح والسلوك القويم!
+</motion.p>
             </motion.div>
 
             {/* Boutons */}
@@ -252,9 +255,10 @@ export default function Home() {
             {/* Liste des catégories pour الأخطاء السلوكية */}
             <div className="w-full max-w-4xl space-y-6">
               {[
-                "في علاقته بالممتلكات العامة",
-                "في علاقته بالآخرين(الأقران والمعلّمين)",
                 "في علاقته بنفسه",
+                "في علاقته بالآخرين(الأقران والمعلّمين)",
+                "في علاقته بالممتلكات العامة",
+                
               ].reduce((acc, category, index, arr) => {
                 if (index % 2 === 0) {
                   const pair = [

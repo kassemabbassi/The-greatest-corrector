@@ -2,7 +2,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import MistakeModel from "../../components/MistakeModel";
 import { FaArrowLeft } from "react-icons/fa";
-
+import {useRouter} from "next/router";
+import Image from "next/image";
 const mistakesList = [
   {
     id: 1,
@@ -15,7 +16,7 @@ const mistakesList = [
       📘 رواه ابن ماجه في سننه.
       الدلالة: 
       النبي ﷺ يعلّمنا أن الإسراف في أي مورد من موارد الحياة، حتى الماء الذي هو مصدر الحياة، يتنافى مع التوازن الذي أمرنا به. يجب على المسلم أن يُحسن استخدام الموارد بشكل معتدل. 
-      💡 التطبيق في القسم:
+      💡 التطبيق:
       نشاط "الماء نعمة": يُطلب من التلاميذ في بداية الدرس كتابة أو سرد مواقف شعروا فيها بقيمة الماء، وكيف أن استخدامه يجب أن يتم بحذر.
       حمله توعويّة تعرض ضعف الموارد المائيّة اليوم ودور الانسان في الحفاظ عليها أو هدرها.
     `
@@ -32,7 +33,7 @@ const mistakesList = [
       📘 رواه مسلم في صحيحه.
       الدلالة:
       النبي ﷺ يُعلّمنا أهمية العناية بالممتلكات العامة والاعتناء بها، مما يعكس التقدير للأمانة التي نُحسن بها استغلال الموارد المشتركة.
-      💡 التطبيق في القسم:
+      💡 التطبيق:
       نادي "العناية بالممتلكات العامة": يتم تشجيع التلاميذ على المساهمة في حماية الممتلكات العامة في المدرسة، مثل العناية بالأثاث، الأوراق، أو الأدوات.
     `
   },
@@ -47,7 +48,7 @@ const mistakesList = [
       📘 رواه مسلم في صحيحه.
       الدلالة:
       النظافة تعتبر جزءًا من الإيمان في الإسلام، النبي ﷺ يُشجّع على المحافظة على البيئة والاعتناء بالمكان الذي نعيش فيه، من خلال تجنب إلقاء الفضلات في الأماكن غير المخصصة لذلك.
-      💡 التطبيق في القسم:
+      💡 التطبيق:
       نشاط "مكان نظيف": يُطلب من الطلاب أن يتعاونوا في تنظيف مساحة معينة من المدرسة أو الفصل الدراسي، مع التأكيد على أهمية الحفاظ على البيئة والمكان.
       يُقال لهم:
       "كيف يمكننا الحفاظ على نظافة بيئتنا المدرسية والمجتمع الذي نعيش فيه؟"
@@ -57,6 +58,7 @@ const mistakesList = [
 ];
 
 export default function Others() {
+  const router = useRouter();
   const [selectedMistake, setSelectedMistake] = useState(null);
   
   const groupMistakes = () => {
@@ -73,51 +75,34 @@ export default function Others() {
     <div className="min-h-screen flex flex-col items-center justify-start p-4 sm:p-6 bg-white" dir="rtl">
       {/* En-tête avec logos et titre */}
       <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 mb-6 sm:mb-8">
-        {/* Logo à gauche : Étoile islamique */}
-        <motion.div
-          whileHover={{ scale: 1.1, rotate: 5 }}
-          whileTap={{ scale: 0.9 }}
-          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-[#4f772d] rounded-full flex items-center justify-center shadow-lg hover:bg-[#31572c] transition duration-300"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 64 64"
-            className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 text-white"
-          >
-            <path
-              fill="currentColor"
-              d="M32 2l6 18h18l-14 10 6 18-16-12-16 12 6-18L8 20h18l6-18z"
-            />
-          </svg>
-        </motion.div>
-
-        {/* Titre principal */}
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent font-amiri text-center tracking-wide"
-        >
-          المصلح الأعظم
-        </motion.h1>
-
-        {/* Logo à droite : Étoile islamique */}
-        <motion.div
-          whileHover={{ scale: 1.1, rotate: -5 }}
-          whileTap={{ scale: 0.9 }}
-          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-[#4f772d] rounded-full flex items-center justify-center shadow-lg hover:bg-[#31572c] transition duration-300"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 64 64"
-            className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 text-white"
-          >
-            <path
-              fill="currentColor"
-              d="M32 2l6 18h18l-14 10 6 18-16-12-16 12 6-18L8 20h18l6-18z"
-            />
-          </svg>
-        </motion.div>
+         <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center">
+                <Image
+                  src="/1.png"
+                  alt="Logo"
+                  width={112}  // Réduit depuis 128
+                  height={112} // Réduit depuis 128
+                  className="object-contain w-full h-full" // Ajouté pour une meilleure adaptation
+                />
+              </div>
+                      <motion.h1
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent font-amiri text-center tracking-wide"
+                      >
+                        المصلح الأعظم
+                      </motion.h1>
+                      {/* Logo à droite */}
+                      {/* Logo à gauche - Version statique (comme du texte) */}
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center">
+                <Image
+                  src="/1.png"
+                  alt="Logo"
+                  width={112}  // Réduit depuis 128
+                  height={112} // Réduit depuis 128
+                  className="object-contain w-full h-full" // Ajouté pour une meilleure adaptation
+                />
+              </div>
       </div>
 
       {/* Sous-titre */}
@@ -199,6 +184,16 @@ export default function Others() {
           العودة إلى القائمة
         </motion.button>
       )}
+        {/* Nouveau bouton pour retourner aux domaines */}
+        <motion.button
+        onClick={() => router.push('/')} // Redirection vers la page relation-with-creed
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="mt-4 sm:mt-6 bg-[#90a955] text-white text-lg sm:text-xl md:text-2xl font-amiri font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg shadow-md hover:bg-[#4f772d] hover:shadow-lg transition duration-300 flex items-center gap-2 sm:gap-3"
+      >
+        <FaArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+        العودة إلى المجالات
+      </motion.button>
     </div>
   );
 }

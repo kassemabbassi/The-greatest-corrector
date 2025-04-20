@@ -46,3 +46,24 @@ body {
   border-bottom: 1px solid #4CAF50; /* Soulignement discret */
   padding-bottom: 1px;
 }
+
+
+.app-mention {
+  color: #2b7cff; /* Bleu vif mais sobre */
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(43, 124, 255, 0.3);
+  position: relative;
+  padding: 0 2px;
+}
+
+/* Effet de surlignage subtil */
+.app-mention::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(43, 124, 255, 0.4), rgba(43, 124, 255, 0.1));
+  border-radius: 2px;
+}

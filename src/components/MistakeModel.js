@@ -8,9 +8,10 @@ const applyProphetMentionStyle = (text) => {
   const prophetRegex = /ﷺ|رسول الله ﷺ|النبي ﷺ|النبوية|الأنبياء|الرسل/g;
   const quranRegex = /قرآنية|القرآن/g;
   const allahRegex = /(^|\s)الله($|\s|[^\u0621-\u064A])/g;
-  
-  // Modifié pour ne matcher que "مسلم" seul (avec ou sans espace autour)
   const referenceRegex = /الدلالة|رواه|البخاري|(^|\s)مسلم($|\s)|الترمذي|الصحيح/g;
+  
+  // Nouvelle expression régulière pour cibler uniquement "التطبيق" exact
+  const appRegex = /(^|\s)التطبيق($|\s)/g;
 
   let styledText = text.replace(prophetRegex, (match) => 
     `<span class="prophet-mention">${match}</span>`
@@ -24,6 +25,11 @@ const applyProphetMentionStyle = (text) => {
   styledText = styledText.replace(referenceRegex, (match, before, after) =>
     before ? `${before}<span class="reference-mention">مسلم</span>${after}` 
            : `<span class="reference-mention">${match}</span>`
+  );
+  
+  // Ajout du remplacement pour "التطبيق"
+  styledText = styledText.replace(appRegex, (match, before, after) =>
+    `${before}<span class="app-mention">التطبيق</span>${after}`
   );
 
   return styledText;

@@ -2,7 +2,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import MistakeModel from "../../components/MistakeModel";
 import { FaArrowLeft } from "react-icons/fa";
-
+import { useRouter } from "next/router";
+import Image from "next/image";
 const mistakesList = [
     {
         id: 23,
@@ -15,7 +16,7 @@ const mistakesList = [
         رواه البخاري في صحيحه (1968)  
         🔎 الدلالة:  
         النبي ﷺ لم يُربِّ أصحابه على التشدد والحرمان، بل على التوازن النابع من فهم عميق للإنسان: أن له روحًا تتوق للعبادة، وجسدًا يحتاج للراحة، وأهلاً ينتظرون الودّ. بأسلوب تربوي رحيم، وجه النبي ﷺ عبد الله بن عمرو ليُدرك أن العبادة لا تعني الانقطاع عن الحياة، بل تعني أن نعبد الله ونحن نعيش الحياة بكامل أبعادها، فنكون جادين دون قسوة، ومتعبدين دون غلو، ومحبين دون انشغال.  
-        🏠📚 تطبيق في البيت أو القسم:  
+        🏠📚  التطبيق:  
         يُعلن طفل في الفصل بحماس: "أنا لا أريد أن ألعب بعد اليوم، سأبقى أدرس وأتعبد فقط!"  
         فيطلب منه المربي أن يرسم ميزانًا، ثم يقول له:  
         "ضع في أحد الكفتين: الصلاة، قراءة القرآن، الدراسة. وفي الكفة الأخرى: اللعب، الضحك مع الأهل، المشي، الراحة. هل ترى كيف يتوازن الميزان؟"  
@@ -35,7 +36,7 @@ const mistakesList = [
         رواه البخاري في صحيحه (676)  
         🔎 الدلالة:  
         في هذا الموقف البسيط، يضع النبي ﷺ أسسًا عظيمة لبناء شخصية الطفل المتواضعة والعاملة. فهو ﷺ لم يعلّم بالكلام فقط، بل بالفعل؛ إذ شارك في أعمال البيت، وخاط ثوبه، وأصلح نعله، فلم يعتبر العمل اليدوي نقصًا في المكانة، بل كمالًا في الرجولة والقدوة. هذا الأسلوب النبوي يزرع في المتعلم أن الشرف لا يكون في المظاهر، بل في النفع والبذل والتواضع. وهكذا يَسقُط في نفسه وهم أن من يعمل بيده أقل قيمة.  
-        🏠📚 تطبيق في البيت أو القسم:  
+        🏠📚   التطبيق:  
         يُطلب من التلاميذ في القسم أن يُحضِر كلٌّ منهم صورة أو وصفًا لعمل يُجيده أحد أفراد أسرته: الزراعة، الخياطة، النجارة، المطبخ… ثم يُكتب على اللوح:  
         "ما العمل الذي شارك فيه النبي ﷺ؟"  
         يرد الأطفال: "الخياطة، والخدمة في البيت."  
@@ -52,6 +53,7 @@ const mistakesList = [
 ]
 
 export default function Others() {
+  const router = useRouter();
   const [selectedMistake, setSelectedMistake] = useState(null);
   
   // Add navigation function for returning to domains page
@@ -75,45 +77,35 @@ export default function Others() {
     <div className="min-h-screen flex flex-col items-center justify-start p-4 sm:p-6 bg-white" dir="rtl">
       {/* En-tête responsive */}
       <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 mb-6 sm:mb-8">
-        {/* Logo gauche */}
-        <motion.div
-          whileHover={{ scale: 1.1, rotate: 5 }}
-          whileTap={{ scale: 0.9 }}
-          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-[#4f772d] rounded-full flex items-center justify-center shadow-lg hover:bg-[#31572c] transition duration-300"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 64 64"
-            className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 text-white"
-          >
-            <path fill="currentColor" d="M32 2l6 18h18l-14 10 6 18-16-12-16 12 6-18L8 20h18l6-18z"/>
-          </svg>
-        </motion.div>
-
-        {/* Titre principal */}
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent font-amiri text-center tracking-wide"
-        >
-          المصلح الأعظم
-        </motion.h1>
-
-        {/* Logo droite */}
-        <motion.div
-          whileHover={{ scale: 1.1, rotate: -5 }}
-          whileTap={{ scale: 0.9 }}
-          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-[#4f772d] rounded-full flex items-center justify-center shadow-lg hover:bg-[#31572c] transition duration-300"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 64 64"
-            className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 text-white"
-          >
-            <path fill="currentColor" d="M32 2l6 18h18l-14 10 6 18-16-12-16 12 6-18L8 20h18l6-18z"/>
-          </svg>
-        </motion.div>
+       {/* Logo à gauche - Version statique (comme du texte) */}
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center">
+                       <Image
+                         src="/1.png"
+                         alt="Logo"
+                         width={112}  // Réduit depuis 128
+                         height={112} // Réduit depuis 128
+                         className="object-contain w-full h-full" // Ajouté pour une meilleure adaptation
+                       />
+                     </div>
+                             <motion.h1
+                               initial={{ opacity: 0, y: -20 }}
+                               animate={{ opacity: 1, y: 0 }}
+                               transition={{ duration: 0.8, ease: "easeOut" }}
+                               className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent font-amiri text-center tracking-wide"
+                             >
+                               المصلح الأعظم
+                             </motion.h1>
+                             {/* Logo à droite */}
+                             {/* Logo à gauche - Version statique (comme du texte) */}
+                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center">
+                       <Image
+                         src="/1.png"
+                         alt="Logo"
+                         width={112}  // Réduit depuis 128
+                         height={112} // Réduit depuis 128
+                         className="object-contain w-full h-full" // Ajouté pour une meilleure adaptation
+                       />
+                     </div>
       </div>
 
       {/* Sous-titre centré */}
@@ -196,18 +188,18 @@ export default function Others() {
         </motion.button>
       )}
       
-      {/* Bouton de retour vers la page des domaines */}
+      
+      {/* Nouveau bouton pour retourner aux domaines */}
       <motion.button
-        onClick={handleReturn}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8, duration: 0.5 }}
+        onClick={() => router.push('/conceptual-mistakes/In-the-field-of-ethics')} // Redirection vers la page relation-with-creed
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="mt-6 sm:mt-8 bg-[#4f772d] text-white text-lg sm:text-xl md:text-2xl font-amiri font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg shadow-md hover:bg-[#31572c] hover:shadow-lg transition duration-300"
+        className="mt-4 sm:mt-6 bg-[#90a955] text-white text-lg sm:text-xl md:text-2xl font-amiri font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg shadow-md hover:bg-[#4f772d] hover:shadow-lg transition duration-300 flex items-center gap-2 sm:gap-3"
       >
+        <FaArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         العودة إلى المجالات
       </motion.button>
     </div>
+   
   );
 }

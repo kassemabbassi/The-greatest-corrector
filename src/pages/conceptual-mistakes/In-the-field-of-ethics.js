@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
-
+import Image from "next/image"; 
 export default function SubjectsComponent() {
   const router = useRouter();
 
@@ -48,45 +48,35 @@ export default function SubjectsComponent() {
     <div className="min-h-screen flex flex-col items-center justify-start p-4 sm:p-6 bg-white" dir="rtl">
       {/* En-tête responsive */}
       <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 mb-6 sm:mb-8">
-        {/* Logo gauche */}
-        <motion.div
-          whileHover={{ scale: 1.1, rotate: 5 }}
-          whileTap={{ scale: 0.9 }}
-          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-[#4f772d] rounded-full flex items-center justify-center shadow-lg hover:bg-[#31572c] transition duration-300"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 64 64"
-            className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 text-white"
-          >
-            <path fill="currentColor" d="M32 2l6 18h18l-14 10 6 18-16-12-16 12 6-18L8 20h18l6-18z"/>
-          </svg>
-        </motion.div>
-
-        {/* Titre principal */}
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent font-amiri text-center tracking-wide"
-        >
-          المصلح الأعظم
-        </motion.h1>
-
-        {/* Logo droite */}
-        <motion.div
-          whileHover={{ scale: 1.1, rotate: -5 }}
-          whileTap={{ scale: 0.9 }}
-          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-[#4f772d] rounded-full flex items-center justify-center shadow-lg hover:bg-[#31572c] transition duration-300"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 64 64"
-            className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 text-white"
-          >
-            <path fill="currentColor" d="M32 2l6 18h18l-14 10 6 18-16-12-16 12 6-18L8 20h18l6-18z"/>
-          </svg>
-        </motion.div>
+        {/* Logo à gauche - Version statique (comme du texte) */}
+                 <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center">
+                <Image
+                  src="/1.png"
+                  alt="Logo"
+                  width={112}  // Réduit depuis 128
+                  height={112} // Réduit depuis 128
+                  className="object-contain w-full h-full" // Ajouté pour une meilleure adaptation
+                />
+              </div>
+                      <motion.h1
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent font-amiri text-center tracking-wide"
+                      >
+                        المصلح الأعظم
+                      </motion.h1>
+                      {/* Logo à droite */}
+                      {/* Logo à gauche - Version statique (comme du texte) */}
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center">
+                <Image
+                  src="/1.png"
+                  alt="Logo"
+                  width={112}  // Réduit depuis 128
+                  height={112} // Réduit depuis 128
+                  className="object-contain w-full h-full" // Ajouté pour une meilleure adaptation
+                />
+              </div>
       </div>
 
       {/* Sous-titre */}

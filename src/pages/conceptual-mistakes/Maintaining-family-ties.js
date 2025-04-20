@@ -2,6 +2,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import MistakeModel from "../../components/MistakeModel";
 import { FaArrowLeft } from "react-icons/fa";
+import { useRouter } from "next/router";
+import Image from "next/image";
 
 const mistakesList = [
     {
@@ -16,7 +18,7 @@ const mistakesList = [
         🔎 الدلالة:  
         في هذا الحديث، يُربّينا النبي ﷺ بأسلوب قلبي عاطفي، لا يأمر فقط بصلة الرحم، بل يربطها بأعظم ما يتمنى المؤمن: رحمة الله. هذا الربط العاطفي بين الفعل والجزاء يجعل الطفل يفهم أن كل زيارة لأحد أقاربه، وكل مكالمة، وكل ابتسامة تجاه رحمٍ مقطوع، هي طريق لرحمة تُحيي قلبه وتفتح له أبواب الخير في الدنيا والآخرة.  
         وهكذا لا تبقى صلة الرحم مجرد عادة اجتماعية، بل عبادة قلبية تقربه من الله، ويشعر بقيمتها حتى في لحظات الخلاف أو الغضب.  
-        🏠📚 تطبيق في البيت أو القسم:  
+        🏠📚  التطبيق:  
         يرفض الطفل زيارة عمته بسبب خلاف قديم، فيدعوه المربي ليرسم على ورقة شجرة، ويقول له:  
         "هذه الشجرة هي عائلتك، وكل غصن منها يمثل فردًا من أقاربك. ماذا يحدث إذا كسرت غصنًا منها؟"  
         يجيب الطفل: "تتأذى الشجرة!"  
@@ -30,6 +32,7 @@ const mistakesList = [
 ]
 
 export default function Others() {
+  const router = useRouter();
   const [selectedMistake, setSelectedMistake] = useState(null);
   
   // Add navigation function for returning to domains page
@@ -53,45 +56,35 @@ export default function Others() {
     <div className="min-h-screen flex flex-col items-center justify-start p-4 sm:p-6 bg-white" dir="rtl">
       {/* En-tête responsive */}
       <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 mb-6 sm:mb-8">
-        {/* Logo gauche */}
-        <motion.div
-          whileHover={{ scale: 1.1, rotate: 5 }}
-          whileTap={{ scale: 0.9 }}
-          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-[#4f772d] rounded-full flex items-center justify-center shadow-lg hover:bg-[#31572c] transition duration-300"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 64 64"
-            className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 text-white"
-          >
-            <path fill="currentColor" d="M32 2l6 18h18l-14 10 6 18-16-12-16 12 6-18L8 20h18l6-18z"/>
-          </svg>
-        </motion.div>
-
-        {/* Titre principal */}
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent font-amiri text-center tracking-wide"
-        >
-          المصلح الأعظم
-        </motion.h1>
-
-        {/* Logo droite */}
-        <motion.div
-          whileHover={{ scale: 1.1, rotate: -5 }}
-          whileTap={{ scale: 0.9 }}
-          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-[#4f772d] rounded-full flex items-center justify-center shadow-lg hover:bg-[#31572c] transition duration-300"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 64 64"
-            className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 text-white"
-          >
-            <path fill="currentColor" d="M32 2l6 18h18l-14 10 6 18-16-12-16 12 6-18L8 20h18l6-18z"/>
-          </svg>
-        </motion.div>
+        {/* Logo à gauche - Version statique (comme du texte) */}
+                 <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center">
+                <Image
+                  src="/1.png"
+                  alt="Logo"
+                  width={112}  // Réduit depuis 128
+                  height={112} // Réduit depuis 128
+                  className="object-contain w-full h-full" // Ajouté pour une meilleure adaptation
+                />
+              </div>
+                      <motion.h1
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent font-amiri text-center tracking-wide"
+                      >
+                        المصلح الأعظم
+                      </motion.h1>
+                      {/* Logo à droite */}
+                      {/* Logo à gauche - Version statique (comme du texte) */}
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center">
+                <Image
+                  src="/1.png"
+                  alt="Logo"
+                  width={112}  // Réduit depuis 128
+                  height={112} // Réduit depuis 128
+                  className="object-contain w-full h-full" // Ajouté pour une meilleure adaptation
+                />
+              </div>
       </div>
 
       {/* Sous-titre centré */}
@@ -174,16 +167,14 @@ export default function Others() {
         </motion.button>
       )}
       
-      {/* Bouton de retour vers la page des domaines */}
+      {/* Nouveau bouton pour retourner aux domaines */}
       <motion.button
-        onClick={handleReturn}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8, duration: 0.5 }}
+        onClick={() => router.push('/conceptual-mistakes/In-the-field-of-ethics')} // Redirection vers la page relation-with-creed
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="mt-6 sm:mt-8 bg-[#4f772d] text-white text-lg sm:text-xl md:text-2xl font-amiri font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg shadow-md hover:bg-[#31572c] hover:shadow-lg transition duration-300"
+        className="mt-4 sm:mt-6 bg-[#90a955] text-white text-lg sm:text-xl md:text-2xl font-amiri font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg shadow-md hover:bg-[#4f772d] hover:shadow-lg transition duration-300 flex items-center gap-2 sm:gap-3"
       >
+        <FaArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         العودة إلى المجالات
       </motion.button>
     </div>

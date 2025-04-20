@@ -2,8 +2,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import MistakeModel from "../../components/MistakeModel";
 import { FaArrowLeft } from "react-icons/fa";
-import {useRouter} from "next/router";
-import {Image} from "next/image";
+import { useRouter } from "next/router";
+import Image from "next/image";
 const mistakesList = [
 
       {

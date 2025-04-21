@@ -8,7 +8,8 @@ const applyProphetMentionStyle = (text) => {
   const prophetRegex = /ﷺ|رسول الله ﷺ|النبي ﷺ|النبوية|الأنبياء|الرسل/g;
   const quranRegex = /قرآنية|القرآن/g;
   const allahRegex = /(^|\s)الله($|\s|[^\u0621-\u064A])/g;
-  const referenceRegex = /الدلالة|رواه|البخاري|(^|\s)مسلم($|\s)|الترمذي|الصحيح/g;
+  const referenceRegex = /الدلالة|رواه|البخاري|(^|\s)مسلم($|\s)|الترمذي|الصحيحين|الصحيح/g;
+
   
   // Nouvelle expression régulière pour cibler uniquement "التطبيق" exact
   const appRegex = /(^|\s)التطبيق($|\s)/g;

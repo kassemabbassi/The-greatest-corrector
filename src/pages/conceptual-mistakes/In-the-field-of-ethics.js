@@ -86,7 +86,7 @@ export default function SubjectsComponent() {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-xl sm:text-2xl md:text-3xl text-[#4f772d] font-bold mb-8 sm:mb-12 md:mb-16 font-amiri italic text-center leading-relaxed"
       >
-        مواضيع مجال العبادات
+        مواضيع مجال الأخلاق 
       </motion.p>
 
       {/* Liste des sujets responsive */}

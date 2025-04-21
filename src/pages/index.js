@@ -175,6 +175,14 @@ export default function Home() {
             transition={{ duration: 0.5, ease: "easeInOut" }}
             className="w-full flex flex-col items-center"
           >
+            <motion.h2
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="text-3xl sm:text-4xl md:text-5xl bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent mb-8 font-amiri italic text-center"
+            >
+              الأخطاء التصورية
+            </motion.h2>
             <div className="w-full max-w-4xl space-y-6">
               {[
                 "في مجال العقيدة",

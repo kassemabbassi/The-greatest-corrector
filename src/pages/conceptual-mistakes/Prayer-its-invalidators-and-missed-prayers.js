@@ -49,7 +49,7 @@ const mistakesList = [
       },
       {
         id: 23,
-        betise: "الاعتقاد أن عدم التركيز أو التحدث أثناء الصلاة لا يؤثر على صحتها",
+        betise: "الاعتقاد أنّ التحدث أثناء الصلاة لا يؤثّر على صحتها وأن عدم التركيز لا ينقص ثوابها",
         reponse: `
 الأساليب النبويّة لتصحيح هذا الخطأ :
       * الأسلوب النبوي للإصلاح: توضيح الخطأ بلطف وتحفيز الخشوع  
@@ -97,8 +97,9 @@ const mistakesList = [
 الأساليب النبويّة لتصحيح هذا الخطأ :
       * الأسلوب النبوي: تصحيح الفهم بالفعل العملي  
       📖 الحديث:  
-      كان ﷺ إذا قام إلى الصلاة كبّر، ولم يُنقل عنه التلفظ بالنية.  
-      رواه البخاري و مسلم  
+      كان ﷺ إذا قام إلى الصلاة كبّر.  
+      رواه البخاري و مسلم  ولم يُنقل عنه التلفظ بالنية
+      
       
       🔎 الدلالة:  
       النبي ﷺ لم يتلفظ بالنية قبل الصلاة، بل كان يُجسّدها بالقلب والعمل. هذا يُعلّم أن النية أمر داخلي بين العبد وربه، لا تحتاج إلى جهر أو تصنّع. تربيـويًا، يُرشد هذا الأسلوب الطفل إلى أن الإسلام دين يُراعي الفطرة والصدق والبساطة، وأن حضور القلب يكفي دون الحاجة إلى ألفاظ زائدة.
@@ -162,15 +163,29 @@ export default function Others() {
           className="object-contain w-full h-full" // Ajouté pour une meilleure adaptation
         />
       </div>
-              <motion.h1
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent font-amiri text-center tracking-wide"
-              >
-                المصلح الأعظم
-              </motion.h1>
-              {/* Logo à droite */}
+       {/* Titre principal avec le symbole ﷺ */}
+       <div className="flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex items-center justify-center"
+          >
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent font-amiri text-center tracking-wide">
+              المصلح الأعظم
+            </h1>
+            <motion.span 
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#4f772d] mr-2 font-arabic"
+            >
+              ﷺ
+            </motion.span>
+          </motion.div>
+          
+          
+        </div>
               {/* Logo à gauche - Version statique (comme du texte) */}
               <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center">
         <Image

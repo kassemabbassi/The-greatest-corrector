@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 const mistakesList = [
   {
     id: 1,
-    betise: "سوء فهم العصمة حيث يعتقد البعض أن الرسل معصومون من كل خطأ",
+    betise: "سوء فهم العصمة حيث يعتقد البعض أن الرّسل منزهون عن الأعراض البشريّة كالنسيان والمرض..",
     reponse: `
 الأساليب النبويّة لتصحيح هذا الخطأ:
       * بيان أن الرسل بشر ولكن محفوظون في التبليغ
@@ -39,8 +39,7 @@ const mistakesList = [
 الأساليب النبويّة لتصحيح هذا الخطأ :
       *  تذكير بأن المعجزة واقعة وشاهدها الناس
       📖 الحديث:
-      قال ﷺ: "والذي نَفْسُ مُحَمَّدٍ بيَدِهِ، لا يَسْمَعُ بي أحَدٌ مِن هذِه الأُمَّةِ يَهُودِيٌّ، ولا نَصْرانِيٌّ، ثُمَّ يَمُوتُ ولَمْ يُؤْمِنْ بالَّذِي أُرْسِلْتُ به، إلَّا كانَ مِن أصْحابِ النَّارِ  ."
-      رواه مسلم في صحيحه
+      عَنْ عَبْدِ اللَّهِ بْنِ مَسْعُودٍ رَضِيَ اللَّهُ عَنْهُ قَالَ انْشَقَّ الْقَمَرُ عَلَى عَهْدِ رَسُولِ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ شِقَّتَيْنِ فَقَالَ النَّبِيُّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: ((اشْهَدُوا)).\n رواه البخاري و مسلم في صحيحهما.
       🔎 الدلالة:
       النبي ﷺ يربط الإيمان به بالإيمان برسالته ومعجزاته، مما يُبيّن أن المعجزة حقيقية لا خيال، وأن الناس شهدوها وصدقوها.
       🏠📚   التطبيق:
@@ -58,7 +57,7 @@ const mistakesList = [
   },
   {
     id: 3,
-    betise: "التفريق بين مكانة الرسل ووظائفهم",
+    betise: " التفريق بين وظائف الرّسل وشرائعهم",
     reponse: `
 الأساليب النبويّة لتصحيح هذا الخطأ :
       *بيان وحدة الرسالة واختلاف الزمان
@@ -102,15 +101,29 @@ export default function Others() {
            className="object-contain w-full h-full" // Ajouté pour une meilleure adaptation
          />
        </div>
-               <motion.h1
-                 initial={{ opacity: 0, y: -20 }}
-                 animate={{ opacity: 1, y: 0 }}
-                 transition={{ duration: 0.8, ease: "easeOut" }}
-                 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent font-amiri text-center tracking-wide"
-               >
-                 المصلح الأعظم
-               </motion.h1>
-               {/* Logo à droite */}
+              {/* Titre principal avec le symbole ﷺ */}
+        <div className="flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex items-center justify-center"
+          >
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-[#4f772d] to-[#90a955] bg-clip-text text-transparent font-amiri text-center tracking-wide">
+              المصلح الأعظم
+            </h1>
+            <motion.span 
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#4f772d] mr-2 font-arabic"
+            >
+              ﷺ
+            </motion.span>
+          </motion.div>
+          
+          
+        </div>
                {/* Logo à gauche - Version statique (comme du texte) */}
                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center">
          <Image
